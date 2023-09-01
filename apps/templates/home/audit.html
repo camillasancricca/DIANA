@@ -1,0 +1,293 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            
+                <form method="post">
+                    <div class="card">
+                    <div class="row">
+                        <div class="col-6">
+                            
+                            <div class="col-lg ml-auto mr-auto">{% include 'home/Plots/table_df.html' %}</div>
+
+                        </div>
+
+
+                        <div class="col-6">
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="tim-icons icon-bullet-list-67"></i> Most relevant
+                                    attributes</h3>
+                                <h5 class="description">Select the features you are interested in processing (multiple
+                                    choices are possible)</h5>
+
+                                <div class="col-lg ml-auto mr-auto">
+                                    <div class="row">
+                                       
+                                            {% for col in columns %}
+                                            <div class="col-md-4 ">
+                                                <div class="form-check form-check-inline">
+                                                    <label class="form-check-label">
+                                                        <input class="form-check-input" type="checkbox" name="{{col}}"
+                                                            value="{{col}}" checked="checked">
+                                                        {{col}}
+                                                        <span class="form-check-sign"></span>
+                                                    </label>
+                                                </div>
+                                            </div>
+                                            
+                                            {% endfor %}
+                                        
+                                        
+                                    </div>
+                                </div>
+
+                            </div></br></br>
+
+
+
+
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="tim-icons icon-atom"></i> Select the ML algorithm </h3>
+                                <h5 class="description">Select the ML algorithm you intend to use</h5>
+                                <div class="col-lg ml-auto mr-auto">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                            <div class="form-check form-check-radio form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name='algorithm'
+                                                        id="id1" value="DT" checked="checked"> Decision Trees
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div></br>
+                                            <div class="form-check form-check-radio form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name='algorithm'
+                                                        id="id2" value="KNN"> K-Nearest Neighbours
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div></br>
+                                            <div class="form-check form-check-radio form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="radio" name='algorithm'
+                                                        id="id3" value="NB"> Naive Bayes
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div>
+
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            </br></br>
+                            <div class="card-header">
+                                <h3 class="card-title"><i class="tim-icons icon-vector"></i> Do you need support?</h3>
+                                <h5 class="description">Do you want to be supported in the data preparation phase?</h5>
+                                <div class="col-lg ml-auto mr-auto">
+                                    <div class="row">
+                                        <div class="col-md-11">
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name='req_support' id="Yes"
+                                                    value="Yes" checked="checked"> Yes
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div></br>
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name='req_support' id="No"
+                                                    value="No">No
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div></br>
+    
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card-footer">
+                        
+                                <div class="text-center">
+                                    <input class="btn btn-primary col-5 float-center" type="submit" name="submit" value="Profiling">
+                                </div>
+                            
+                        </div>
+
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                </form></br>
+            
+        </div>
+    </div>
+</div>
+
+<!-- <div class="content">
+    
+   
+
+ <div class="row">
+        <div class="col-12">
+            <div class="card card-chart">
+
+
+                <form method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card-header">
+                                <h5 class="card-category"></h5>
+                                <h3 class="card-title"> Select the algorithm</h3>
+                            </div>
+
+                            <div class="col-lg ml-auto mr-auto">
+                                <div class="row">
+                                    <div class="col-md-11 ">
+                                        <p>Select the features you are interested in processing (multiple choices are
+                                            possible)</p>
+                                        <div class="col-lg ml-auto mr-auto">
+
+
+                                            {% for col in columns %}
+                                            <div class="form-check form-check-inline">
+                                                <label class="form-check-label">
+                                                    <input class="form-check-input" type="checkbox" name="{{col}}"
+                                                        value="{{col}}" checked="checked">
+                                                    {{col}}
+                                                    <span class="form-check-sign"></span>
+                                                </label>
+                                            </div></br>
+                                            {% endfor %}
+
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card-header">
+                                <h5 class="card-category"></h5>
+                                <h3 class="card-title"><i class="tim-icons icon-atom"></i> Select the algorithm</h3>
+                            </div>
+
+                            <div class="col-lg ml-auto mr-auto">
+                                <div class="row">
+                                    <div class="col-md-11">
+
+                                        <p>Select the ML algorithm you intent on using. This selection is optional but
+                                            not selecting it might leave problems in the data</p>
+                                        </p>
+
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name='algorithm' id="id1"
+                                                    value="DT" checked="checked"> Decision Tree
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div></br>
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name='algorithm' id="id2"
+                                                    value="KNN" checked="checked"> K-Nearest Neighbor
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div></br>
+                                        <div class="form-check form-check-radio form-check-inline">
+                                            <label class="form-check-label">
+                                                <input class="form-check-input" type="radio" name='algorithm' id="id3"
+                                                    value="NB" checked="checked"> Naive Bayes
+                                                <span class="form-check-sign"></span>
+                                            </label>
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            </br>
+                            <div class="card-header">
+                                <h5 class="card-category"></h5>
+                                <h3 class="card-title"> Functional dependencies
+                                </h3>
+                            </div>
+
+                            <div class="col-lg ml-auto mr-auto">
+                                <p>Write the values</p>
+                                <div class="col-md-11">
+                                    <tr>
+                                        <td>
+                                            <p>Support (%)</p>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="Support" placeholder='80'>
+                                        </td>
+                                    </tr>
+                                    </br>
+                                    <tr>
+                                        <td>
+                                            <p>Confidence (%)</p>
+                                        </td>
+                                        <td>
+                                            <input type="text" class="form-control" name="Confidence"
+                                                placeholder='90'>
+                                        </td>
+                                    </tr>
+                                    </br>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <div class="row">
+                        <div class="col-lg ml-auto mr-auto">
+                            <div class="text-center">
+                                <input class="btn btn-primary btn-lg" type="submit" name="submit" value="Profiling">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+
+                
+        </div>
+    </div>
+</div> -->
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

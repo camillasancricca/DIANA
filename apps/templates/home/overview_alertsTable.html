@@ -1,0 +1,72 @@
+{% block stylesheets %}
+<style>
+  .purple-word {
+    color: #d725bb;
+    font-weight: bold;
+  }
+</style>
+
+{% endblock stylesheets %}
+{% block content %}
+<div class="table-responsive">
+  <table class="table tablesorter " id="">
+    <thead class=" text-primary">
+      <tr>
+        <th>
+          Alerts
+
+        </th>
+        <th>
+
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+
+      {% for alert in profile.alerts %}
+      <tr>
+        <td>
+          {{ alert|replace("alert","")
+          |replace("[DUPLICATES]", '<span class="purple-word">'+"DUPLICATES"+'</span>' )
+          |replace("[HIGH_CARDINALITY]", '<span class="purple-word">'+"HIGH CARDINALITY"+'</span>')
+          |replace("[HIGH_CORRELATION]", '<span class="purple-word">'+"HIGH CORRELATION"+'</span>')
+          |replace("[IMBALANCE]", '<span class="purple-word">'+"IMBALANCE"+'</span>')
+          |replace("[MISSING]", '<span class="purple-word">'+"MISSING"+'</span>')
+          |replace("[SKEWED]", '<span class="purple-word">'+"SKEWED"+'</span>')
+          |replace("[UNIFORM]", '<span class="purple-word">'+"UNIFORM"+'</span>')
+          |replace("[ZEROS]", '<span class="purple-word">'+"ZEROS"+'</span>')
+          |replace("[UNIQUE]", '<span class="purple-word">'+"UNIQUE"+'</span>')
+          |replace("[CONSTANT]", '<span class="purple-word">'+"CONSTANT"+'</span>')
+          |replace("[UNSUPPORTED]", '<span class="purple-word">'+"UNSUPPORTED"+'</span>')
+          |replace("[DUPLICATES]", '<span class="purple-word">'+"DUPLICATES"+'</span>')
+          |replace("[INFINITE]", '<span class="purple-word">'+"INFINITE"+'</span>')
+          |replace("[TYPE_DATE]", '<span class="purple-word">'+"TYPE_DATE"+'</span>')
+          |replace("[CONSTANT_LENGTH]", '<span class="purple-word">'+"CONSTANT_LENGTH"+'</span>')
+          |replace("[REJECTED]", '<span class="purple-word">'+"REJECTED"+'</span>')
+          |replace("[NON_STATIONARY]", '<span class="purple-word">'+"NON_STATIONARY"+'</span>')
+          |replace("[SEASONAL]", '<span class="purple-word">'+"SEASONAL"+'</span>')
+          |replace("[EMPTY]", '<span class="purple-word">'+"EMPTY"+'</span>')
+          |safe }}
+
+        </td>
+      </tr>
+
+      {% endfor %}
+
+    </tbody>
+
+  </table>
+
+
+  </br>
+
+
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

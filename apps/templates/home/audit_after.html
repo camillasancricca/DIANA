@@ -1,0 +1,110 @@
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div class="col-5">
+  <div class="card card-chart">
+    <form method="post">
+      <div class="card-header">
+        <h3 class="card-title"><i class="tim-icons icon-bullet-list-67"></i> Selected features</h3>
+      </div>
+      <div class="col-lg ml-auto mr-auto">
+        <p>{% for col in columns %}
+          <b>{{col}},&nbsp;</b>
+          {% endfor %}
+        </p>
+        </br>
+      </div>
+      <div class="card-header">
+        <h3 class="card-title"><i class="tim-icons icon-atom"></i> Selected algorithm</h3>
+      </div>
+      <div class="col-lg ml-auto mr-auto">
+        {% if algorithm=='DT': %}
+        <p><b>Decision Tree</b></p>
+        {% elif algorithm=='NB' %}
+        <p><b>Naive Bayes</b></p>
+        {% elif algorithm=='KNN' %}
+        <p><b>K-Nearest Neighbor</b></p>
+        {% endif %}
+        </br>
+      </div>
+      <!-- <div class="card-header">
+        <h3 class="card-title"><i class="tim-icons icon-vector"></i> Functional dependencies</h3>
+        <p>
+      </div>
+      <div class="col-lg ml-auto mr-auto">
+        <p>
+          Support: <b>{{support}}%</b></br>
+          Confidence: <b>{{confidence}}%</b>
+          {{typeNUMList}}
+        </p>
+        </br>
+      </div> -->
+      </br>
+
+      <div class="row">
+        <div class="col-lg ml-auto mr-auto">
+          <div class="text-center">
+            <input class="btn btn-primary" type="submit" name="submit" id="modify-choices"
+              value="Modify choices">&nbsp;&nbsp;&nbsp;
+
+            <input class="btn btn-primary" type="submit" name="submit" id="upload-new"
+              value="Upload new dataset">
+
+
+          </div>
+        </div>
+
+      </div>
+    </form></br>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+  $(document).ready(function () {
+    $('#modify-choices').click(function () {
+      // Prompt the user to confirm before deleting the file
+      if (confirm('Are you sure you want to go back and lose the data?')) {
+        // Get the filename from the server
+        $.ajax({
+          type: 'POST',
+          url: '/delete_file',
+          data: JSON.stringify({ 'filename': 'apps/report/report.json' }),
+          contentType: 'application/json',
+          success: function (response) {
+            // Show an alert with the success message
+            alert(response.message);
+          }
+        });
+      }
+    });
+  });
+
+  $(document).ready(function () {
+    $('#upload-new').click(function () {
+      // Prompt the user to confirm before deleting the file
+      if (confirm('Are you sure you want to go back and lose the data?')) {
+        // Get the filename from the server
+        $.ajax({
+          type: 'POST',
+          url: '/delete_file',
+          data: JSON.stringify({ 'filename': 'apps/report/report.json' }),
+          contentType: 'application/json',
+          success: function (response) {
+            // Show an alert with the success message
+            alert(response.message);
+          }
+        });
+      }
+    });
+  });
+</script>
+{% endblock javascripts %}

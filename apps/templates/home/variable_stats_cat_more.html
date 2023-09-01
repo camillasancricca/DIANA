@@ -1,0 +1,429 @@
+{% block content %}
+{% set counter_5 = namespace(value=6) %}
+
+
+<div id="accordion" role="tablist" aria-multiselectable="true" class="card-collapse">
+  <div class="card card-plain">
+    <div class="card-header" role="tab" id="headingOne">
+      <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-controls="collapseOne">
+        <b>More Details</b>
+
+        <i class="tim-icons icon-minimal-down"></i>
+      </a>
+    </div>
+
+    <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+
+
+
+      <div class="card-body">
+        <ul class="nav nav-pills nav-pills-primary">
+
+
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#common{{var}}">
+              Common values
+            </a>
+          </li>&nbsp;&nbsp;
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#characters{{var}}">
+              Common Characters
+            </a>
+          </li>&nbsp;&nbsp;
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#words{{var}}">
+              Common Words
+            </a>
+          </li>&nbsp;&nbsp;
+          <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#types{{var}}">
+              Types of Characters
+            </a>
+          </li>
+
+        </ul>
+
+        <div class="tab-content tab-space">
+          <div class="tab-pane" id="common{{var}}">
+            <div class="row">
+              <div class="col-6">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Most Common Values
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                        <th>
+                          Frequency
+                        </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+
+                      {% for val, count in info['value_counts_without_nan'].items() %}
+                      {% if loop.index < counter_5.value %} {% set freq=count / profile.variables[var].n *
+                        100|json_round %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        <td>
+                          {{ freq|round(2) }}%
+                        </td>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Least Common Values
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                        <th>
+                          Frequency
+                        </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+
+                      {% for val, count in info['value_counts_without_nan'].items()|reverse %}
+                      {% if loop.index < counter_5.value %} {% set freq=count / profile.variables[var].n *
+                        100|json_round %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        <td>
+                          {{ freq|round(2) }}%
+                        </td>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="characters{{var}}">
+            <div class="row">
+              <div class="col-6">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Most common characters
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                        <th>
+                          Frequency
+                        </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+
+                      {% for val, count in info['character_counts'].items() %}
+                      {% if loop.index < counter_5.value %} {% set freq=count / profile.variables[var].n_characters *
+                        100|json_round %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        <td>
+                          {{ freq|round(2) }}%
+                        </td>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+
+              <div class="col-6">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Least common charcters
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                        <th>
+                          Frequency
+                        </th>
+
+                      </tr>
+                    </thead>
+
+                    <tbody>
+
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+
+                      {% for val, count in info['character_counts'].items()|reverse %}
+                      {% if loop.index < counter_5.value %} {% set freq=count / profile.variables[var].n_characters *
+                        100|json_round %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        <td>
+                          {{ freq|round(2) }}%
+                        </td>
+                        </tr>
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% endif %}
+                        {% endfor %}
+
+
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tab-pane" id="words{{var}}">
+            <div class="row">
+              <div class="col-6">
+
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Most common words
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+                      {% for val, count in info['word_counts'].items() %}
+                      {% if loop.index < counter_5.value %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+
+
+              </div>
+              <div class="col-6">
+
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Least common words
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+                      {% for val, count in info['word_counts'].items()|reverse %}
+                      {% if loop.index < counter_5.value %} <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                        </tr>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+
+
+              </div>
+
+
+
+            </div>
+          </div>
+
+
+
+          <div class="tab-pane" id="types{{var}}">
+            <div class="row">
+              <div class="col-6">
+
+
+
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Types of characters
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+                      {% for val, count in info['block_alias_counts'].items() %}
+                      <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+
+
+
+              </div>
+              <div class="col-6">
+                <div class="table-responsive">
+                  <table class="table tablesorter " id="">
+                    <thead class=" text-primary">
+                      <tr>
+                        <th>
+                          Category of characters
+                        </th>
+                        <th>
+                          Count
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for variable, info in profile['variables'].items() %}
+                      {% if var==variable %}
+
+                      {% for val, count in info['category_alias_counts'].items()|reverse %}
+                      <tr>
+                        <td>
+                          {{ val }}
+                        </td>
+                        <td>
+                          {{ count }}
+                        </td>
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

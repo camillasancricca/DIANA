@@ -1,0 +1,100 @@
+{% block content %}
+
+<div class="table-responsive">
+  <table class="table tablesorter " id="">
+    <thead class=" text-primary">
+      <tr>
+        <th>
+          Overview
+
+        </th>
+        <th>
+
+        </th>
+
+      </tr>
+    </thead>
+    <tbody>
+
+      <tr>
+        <td>
+          Number of selected variables
+        </td>
+        <td>
+          {{ profile.table.n_var }}
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          Number of rows/observations
+        </td>
+        <td>
+          {{ profile.table.n }}
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          Missing Cells
+        </td>
+        <td>
+          {{ profile.table.n_cells_missing }}
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          Variables with missing cells
+        </td>
+        <td>
+          {{ profile.table.n_vars_with_missing }}
+        </td>
+
+      </tr>
+      <tr>
+        <td>
+          Duplicate rows
+        </td>
+        <td>
+          {{ profile.table.n_duplicates }}
+        </td>
+
+      </tr>
+
+      <tr>
+        <td>
+          Numeric Variables
+        </td>
+        <td>
+          {{ profile.table.types.Numeric }}
+        </td>
+      </tr>
+
+
+
+      <tr>
+        <td>
+          Categorical Variables
+        </td>
+        <td>
+          {{ profile.table.types.Categorical }}
+        </td>
+      </tr>
+
+
+
+
+    </tbody>
+
+  </table>
+
+
+  </br>
+
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,102 @@
+{% block stylesheets %}
+<style>
+    /* @import url('https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-combined.min.css'); */
+    .container {
+        margin-top: 10px;
+    }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+{% set count_num = namespace(value=0) %}
+{% set count_cat = namespace(value=0) %}
+
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category"> Data Exploration </h5>
+                    <h3 class="card-title"> Variables </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-primary">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#{{columns[0]}}">
+                                {{columns[0]}}
+                            </a>
+                        </li>
+
+                        {% for col in columns if not col==columns[0] %}
+                        &nbsp;&nbsp;
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#{{col}}">
+                                {{col}}
+                            </a>
+                        </li>
+
+                        {% endfor %}
+                    </ul>
+                    <div class="col-lg ml-auto mr-auto">
+                        <div class="tab-content tab-space">
+
+
+                            {% for var in profile.variables %}
+
+                            {% if loop.first %}
+                            <div class="tab-pane active" id="{{var}}">
+                                {% if var in typeNUMlist %}
+                                {% include 'home/variable_stats_num.html' %}
+                                
+                                {% include 'home/variable_stats_num_more.html' %}
+                                {% set count_num.value = count_num.value + 1 %}
+
+                                {% else %}
+                                {% include 'home/variable_stats_cat.html' %}
+                                {% include 'home/variable_stats_cat_more.html' %}
+                                {% set count_cat.value = count_cat.value + 1 %}
+
+                                {% endif %}
+                            </div>
+                            {% else %}
+                            <div class="tab-pane" id="{{var}}">
+
+                                {% if var in typeNUMlist %}
+
+                                {% include 'home/variable_stats_num.html' %}
+                                {% include 'home/variable_stats_num_more.html' %}
+                                {% set count_num.value = count_num.value + 1 %}
+
+                                {% else %}
+                                {% include 'home/variable_stats_cat.html' %}
+                                {% include 'home/variable_stats_cat_more.html' %}
+                                {% set count_cat.value = count_cat.value + 1 %}
+
+                                {% endif %}
+                            </div>
+                            {% endif %}
+
+
+
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    function activaTab(tab) {
+        $('.nav-tabs a[href="#' + tab + '"]').tab('show');
+    };
+</script>
+{% endblock javascripts %}
