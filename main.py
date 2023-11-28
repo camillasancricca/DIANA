@@ -2,7 +2,6 @@
 """
 Copyright (c) 2019 - present AppSeed.us
 """
-
 import importlib
 import os
 
@@ -13,3 +12,4 @@ app.logger.info('ASSETS_ROOT = ' + app.config['ASSETS_ROOT'])
 
 if __name__ == "__main__":
     app.run(debug=True)
+#prova
