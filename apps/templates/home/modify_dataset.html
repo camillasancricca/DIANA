@@ -3,11 +3,12 @@
 <style>
   #sortable1,
   #sortable2,
-  #sortable3 {
+  #sortable3,
+  #sortable4 {
     list-style-type: none;
     margin: 0;
     padding: 5px;
-    border: 2px solid #27293d;
+    border: 1px solid #27293d;
     background-color: #e6e6fa;
     width: 100%;
     min-height: 20px;
@@ -19,7 +20,7 @@
 
 
   #sortableList {
-    border: 2px solid #27293d;
+    border: 1px solid #27293d;
     background-color: #e6e6fa;
     width: 100%;
     min-height: 40px;
@@ -34,7 +35,8 @@
 
   #sortable1 li,
   #sortable2 li,
-  #sortable3 li {
+  #sortable3 li,
+  #sortable4 li {
     margin: 5px;
     padding: 9px 12px;
     float: left;
@@ -52,7 +54,8 @@
 
   /* #sortable1 li { background-color: #a0bad4; }
   #sortable2 li { background-color: #edf1dd; }
-  #sortable3 li { background-color: #cba7ec; } */
+  #sortable3 li { background-color: #edf1dd; }
+  #sortable4 li { background-color: #cba7ec; } */
 
 
   #sortableList li {
@@ -60,7 +63,7 @@
     padding: 9px 12px;
     font-size: small;
     cursor: move;
-    width: max-content;
+    /* width: max-content; */
     border-radius: 4px;
     border: 1px solid #636efa;
     background-color: #a4adf8;
@@ -88,9 +91,9 @@
     <div class="col-12">
       <div class="card">
         <div class="card-header text-center">
-          <h3 class="card-title">
+          <h2 class="card-title">
             Modify your dataset
-          </h3>
+          </h2>
           <h5 class="description">Build your own pipeline to modify your dataset</h5>
         </div>
         <div class="card-body">
@@ -104,6 +107,66 @@
                 <div class="col-lg ml-auto mr-auto text-center">
                   <!-- <div class="row"><hr class="hr hr-blurry" color="#525f7f" />></div>
                    -->
+
+                  <h3 class="card-title">
+                    Your Pipeline:
+                  </h3>
+
+                  <ul id="sortableList" class="connectedSortable">
+                    {% if wants_support == "Yes" %}
+                    {% for tech in techniques %}
+
+                    {% if tech.dimension == average_rank[0] %}
+                    {% if tech.id == "Remove Identical Duplicates" or tech.id == "Isolation Forest"  %}
+                    <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                    {% endif %}
+                    {% if tech.id == best_imputation_method  %}
+                    <li class="ui-state-default" style="background-color:gold" id="{{tech.id}}">{{tech.text}}</li>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for tech in techniques %}
+
+                    {% if tech.dimension == average_rank[1] %}
+                    {% if tech.id == "Remove Identical Duplicates" or tech.id == best_imputation_method or tech.id == "Isolation Forest"  %}
+                    <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                    {% endif %}
+
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for tech in techniques %}
+
+                    {% if tech.dimension == average_rank[2] %}
+                    {% if tech.id == "Remove Identical Duplicates" or tech.id == best_imputation_method or tech.id == "Isolation Forest"  %}
+                    <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+
+                    {% for tech in techniques %}
+
+                    {% if tech.dimension == average_rank[3] %}
+                    {% if tech.id == "Remove Identical Duplicates" or tech.id == best_imputation_method or tech.id == "Isolation Forest"  %}
+                    <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+
+                    {% endif %}
+
+
+                  </ul>
+
+                  <br /><br /><br /><br />
+
+                  <p style="color: transparent;">  . <br/>  </p>
+                  <h3 class="card-title">
+                    List of possible actions:
+                  </h3>
                   <ul class="nav nav-pills nav-pills-primary">
 
                     <li class="nav-item">
@@ -121,21 +184,35 @@
                         {{"3. "}}{{average_rank[2]}}
                       </a>
                     </li>
-
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#{{average_rank[3]}}">
+                        {{"4. "}}{{average_rank[3]}}
+                      </a>
+                    </li>
 
                   </ul>
                 </div>
 
                 <div class="col-lg ml-auto mr-auto">
-                  <p>Here are all the possible adjustments you can apply to your dataset.
-                    The values in the braces describe what type of data preparation method will be applied.
+                  <!––Here are all the possible adjustments you can apply to your dataset.
+                    The values before the dash describe what data preparation technique will be applied,
+                    while the values after the dash indicate what method will be used to implement that technique. -->
+                  <p>
+                    <br/>
+                    With this dataset the suggested imputation method is:
+                  </p>
+                  <p style="font-weight:500;font-size:1.2em;color:gold">
+                    {{best_imputation_method}}
+                    <br/>
                   </p>
                   <div class="tab-content tab-space">
                     <div class="tab-pane active" id="{{average_rank[0]}}">
                       <ul id="sortable1" class="connectedSortable">
                         {% for tech in techniques %}
                         {% if tech.dimension == average_rank[0] %}
+                        {% if tech.id != "Remove Identical Duplicates" and tech.id != best_imputation_method and tech.id != "Isolation Forest"  %}
                         <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
                         {% endif %}
                         {% endfor %}
                       </ul>
@@ -145,7 +222,9 @@
                       <ul id="sortable2" class="connectedSortable">
                         {% for tech in techniques %}
                         {% if tech.dimension == average_rank[1] %}
+                        {% if tech.id != "Remove Identical Duplicates" and tech.id != best_imputation_method and tech.id != "Isolation Forest"  %}
                         <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
                         {% endif %}
                         {% endfor %}
                       </ul>
@@ -155,55 +234,30 @@
                       <ul id="sortable3" class="connectedSortable">
                         {% for tech in techniques %}
                         {% if tech.dimension == average_rank[2] %}
+                        {% if tech.id != "Remove Identical Duplicates" and tech.id != best_imputation_method and tech.id != "Isolation Forest"  %}
                         <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+
+                    <div class="tab-pane " id="{{average_rank[3]}}">
+                      <ul id="sortable4" class="connectedSortable">
+                        {% for tech in techniques %}
+                        {% if tech.dimension == average_rank[3] %}
+                        {% if tech.id != "Remove Identical Duplicates" and tech.id != best_imputation_method and tech.id != "Isolation Forest"  %}
+                        <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
                         {% endif %}
                         {% endfor %}
                       </ul>
                     </div>
 
                     </br></br></br></br>
-                    &nbsp;
-                    <p>Build your pipeline:</p>
 
-                    <ul id="sortableList" class="connectedSortable">
-                      {% if wants_support == "Yes" %}
-                      {% for tech in techniques %}
-                     
-                      {% if tech.dimension == average_rank[0] %}
-                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %} 
-                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
-                     
-                      {% endif %}
-                      {% endif %}
-                      {% endfor %}
 
-                      {% for tech in techniques %}
-
-                      {% if tech.dimension == average_rank[1] %}
-                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %}
-                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
-                      {% endif %}
-
-                      {% endif %}
-                      {% endfor %}
-
-                      {% for tech in techniques %}
-
-                      {% if tech.dimension == average_rank[2] %}
-                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %}
-                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
-                      
-                      {% endif %}
-                      {% endif %}
-                      {% endfor %}
-                      {% endif %}
-                      
-
-                    </ul>
                   </div>
-
-                  </br>
-
 
                   <div class="row">
                     <div class="col-lg ml-auto mr-auto">
@@ -214,6 +268,12 @@
                         <input class="btn btn-primary" type="submit" name="submit" id="save-and-apply"
                           value="Apply modifications">
 
+                        <input class="btn btn-primary" type="submit" name="submit" id="get-information"
+                          value="Get Information">
+                        <p>
+                          <br/>
+                          {{information_to_print}}
+                        </p>
 
                       </div>
                     </div>
@@ -272,7 +332,7 @@ jQuery UI library: This is a set of user interface widgets and effects built on 
 
 <script>
   $(function () {
-    $("#sortable1, #sortable2, #sortable3, #sortableList").sortable({
+    $("#sortable1, #sortable2, #sortable3, #sortable4, #sortableList").sortable({
       connectWith: ".connectedSortable"
     }).disableSelection();
   });
@@ -282,7 +342,25 @@ jQuery UI library: This is a set of user interface widgets and effects built on 
       var sortedList = $("#sortableList").sortable("toArray");
       $.ajax({
         type: "POST",
-        url: "/apply",
+        url: "/apply/{{name}}/{{dirname}}/{{algorithm}}/{{support}}/{{confidence}}/{{wants_support}}",
+        contentType: "application/json",
+        data: JSON.stringify(sortedList),
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+
+  $(document).ready(function () {
+    $("#get-information").on("click", function () {
+      var sortedList = $("#sortableList").sortable("toArray");
+      $.ajax({
+        type: "POST",
+        url: "/get_information/{{name}}/{{dirname}}/{{algorithm}}/{{support}}/{{confidence}}/{{wants_support}}",
         contentType: "application/json",
         data: JSON.stringify(sortedList),
         success: function (response) {

@@ -2,6 +2,8 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 import numpy as np
 import pandas as pd
+import math
+
 
 def correlations(df):
     p_corr = 0
@@ -38,7 +40,7 @@ def import_features(df):
            round(df.nunique().mean()/rows,4),round(df.nunique().max()/rows,4),round(df.nunique().min()/rows,4),\
            corr[0],corr[1],corr[2]
 
-def import_data_features(name, df):
+def import_data_features(name, df, ML):
 
     with open(name+"_features.csv", "w") as file:
         file.write("name,tuples,features,p_num_var,p_cat_var,p_duplicates,total_size,"+
@@ -55,17 +57,20 @@ def import_data_features(name, df):
     file_path = name+"_features.csv"
     data_features = pd.read_csv(file_path)
 
+    # with this method I calculate the features of the dataset for the imputation classifier
+    create_classifier_features(name, df, ML)
+
     return data_features
 
-def create_testdata(dataset):
+def create_testdata(dataset, ML):
 
-    test = import_data_features("dataset", dataset)
+    test = import_data_features("dataset", dataset, ML)
     test = test.drop(columns="name")
     return test
 
 def predict_ranking(KB,dataset_test,ML):
 
-    test = create_testdata(dataset_test)
+    test = create_testdata(dataset_test, ML)
     class_name = "RANKING"
 
     train = KB[(KB["ML"] == ML)].drop(columns=["ML","name"])
@@ -98,6 +103,107 @@ def predict_ranking(KB,dataset_test,ML):
     print(pred)
     #print(pred_proba)
     return pred
+
+
+def density(df):
+    den_tot = []
+
+    for attr in df.columns:
+
+        n_distinct = df[attr].nunique()
+        prob_attr = []
+        den_attr = 0
+
+        for item in df[attr].unique():
+            p_attr = len(df[df[attr] == item])/len(df)
+            prob_attr.append(p_attr)
+
+        avg_den_attr = 1/n_distinct
+
+        for p in prob_attr:
+            den_attr += math.sqrt((p - avg_den_attr) ** 2)
+            den_attr = den_attr/n_distinct
+
+        den_tot.append(den_attr*100)
+
+    return den_tot
+
+
+def entropy(df):
+    en_tot = []
+
+    for attr in df.columns:
+
+        prob_attr = []
+
+        for item in df[attr].unique():
+            p_attr = len(df[df[attr] == item])/len(df)
+            prob_attr.append(p_attr)
+
+        en_attr = 0
+
+        if 0 in prob_attr:
+            prob_attr.remove(0)
+
+        for p in prob_attr:
+            en_attr += p*np.log(p)
+        en_attr = -en_attr
+
+        en_tot.append(en_attr)
+
+    return en_tot
+
+
+def import_classifier_features(df):
+
+    num = len(list(df.select_dtypes(include=['int64', 'float64']).columns))
+    cat = len(list(df.select_dtypes(include=['bool', 'object']).columns))
+
+    rows = df.shape[0]
+    cols = df.shape[1]
+
+    # qua stava den e en = 0 e stava commentato density e entropy
+    # den = [0]#density(df)
+    # en = [0]#entropy(df)
+    den = density(df)
+    en = entropy(df)
+    corr = correlations(df)
+
+    return rows, cols, round(num / cols, 2), round(cat / cols, 2), round(df.duplicated().sum() / rows,
+                                                                         4), df.memory_usage().sum(), \
+        round(df.nunique().mean() / rows, 4), round(df.nunique().max() / rows, 4), round(df.nunique().min() / rows, 4), \
+        round(sum(den) / len(den), 4), round(max(den), 4), round(min(den), 4), \
+        round(sum(en) / len(en), 4), round(max(en), 4), round(min(en), 4), \
+        corr[0], corr[1], corr[2]
+
+
+def create_classifier_features(name, df, ML_model):
+
+    file = open("dataset_classifier_features.csv", "w")
+
+    file.write("name,n_tuples,n_attributes,p_num_var,p_cat_var,p_duplicates,total_size," +
+               "p_avg_distinct,p_max_distinct,p_min_distinct," +
+               "avg_density,max_density,min_density," +
+               "avg_entropy,max_entropy,min_entropy," +
+               "p_correlated_features,max_pearson,min_pearson," +
+               "ML_ALGORITHM" +
+               "\n")
+    #dt
+    #lr
+    #knn
+    #nb
+
+    features = str(import_classifier_features(df))
+    features = features.replace("(", "")
+    features = features.replace(")", "")
+    features = features.replace(" ", "")
+
+    file.write(name + "," + features + "," + ML_model.lower() + "\n")
+
+    file.close()
+
+
+
 
 # if __name__ == '__main__':
 
