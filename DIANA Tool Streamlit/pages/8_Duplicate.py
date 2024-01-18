@@ -7,6 +7,9 @@ import recordlinkage
 from recordlinkage.index import Block
 from sklearn.metrics.pairwise import cosine_similarity
 import jaro
+import os
+from ydata_profiling import ProfileReport
+import json
 
 def profileAgain(df):
     if os.path.exists("newProfile.json"):

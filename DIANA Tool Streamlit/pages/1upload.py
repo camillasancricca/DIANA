@@ -4,7 +4,7 @@ import webbrowser
 import streamlit as st
 from streamlit.components.v1 import html
 import pandas as pd
-from pandas_profiling import *
+from ydata_profiling import *
 import json
 from time import sleep
 import os
