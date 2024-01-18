@@ -1,0 +1,304 @@
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ config.ASSETS_ROOT }}/css/jquery-ui.css">
+<style>
+  #sortable1,
+  #sortable2,
+  #sortable3 {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    border: 2px solid #27293d;
+    background-color: #e6e6fa;
+    width: 100%;
+    min-height: 20px;
+    float: left;
+    /* do not change the float */
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+
+
+  #sortableList {
+    border: 2px solid #27293d;
+    background-color: #e6e6fa;
+    width: 100%;
+    min-height: 40px;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    float: left;
+    /* do not change the float */
+    margin-right: 10px;
+    border-radius: 8px;
+  }
+
+  #sortable1 li,
+  #sortable2 li,
+  #sortable3 li {
+    margin: 5px;
+    padding: 9px 12px;
+    float: left;
+    border: 1px solid #636efa;
+    color: #27293d;
+    background-color: #a4adf8;
+    size: auto;
+    cursor: move;
+    font-size: small;
+
+    text-align: center;
+    vertical-align: center;
+    border-radius: 4px;
+  }
+
+  /* #sortable1 li { background-color: #a0bad4; }
+  #sortable2 li { background-color: #edf1dd; }
+  #sortable3 li { background-color: #cba7ec; } */
+
+
+  #sortableList li {
+    margin: 5px 5px 5px 5px;
+    padding: 9px 12px;
+    font-size: small;
+    cursor: move;
+    width: max-content;
+    border-radius: 4px;
+    border: 1px solid #636efa;
+    background-color: #a4adf8;
+
+    color: #27293d;
+  }
+
+
+  hr {
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+</style>
+
+
+{% endblock stylesheets %}
+
+{% block content %}
+{% set suggestion_num = namespace(value=2) %}
+{% set ranking_num = namespace(value=0) %}
+<div class="content">
+  <div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-header text-center">
+          <h3 class="card-title">
+            Modify your dataset
+          </h3>
+          <h5 class="description">Build your own pipeline to modify your dataset</h5>
+        </div>
+        <div class="card-body">
+          <form method="POST">
+
+
+            <div class="row">
+
+              <div class="col-6">
+
+                <div class="col-lg ml-auto mr-auto text-center">
+                  <!-- <div class="row"><hr class="hr hr-blurry" color="#525f7f" />></div>
+                   -->
+                  <ul class="nav nav-pills nav-pills-primary">
+
+                    <li class="nav-item">
+                      <a class="nav-link active" data-toggle="tab" href="#{{average_rank[0]}}">
+                        {{"1. "}}{{average_rank[0]}}
+                      </a>
+                    </li>&nbsp;&nbsp;
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#{{average_rank[1]}}">
+                        {{"2. "}}{{average_rank[1]}}
+                      </a>
+                    </li>&nbsp;&nbsp;
+                    <li class="nav-item">
+                      <a class="nav-link" data-toggle="tab" href="#{{average_rank[2]}}">
+                        {{"3. "}}{{average_rank[2]}}
+                      </a>
+                    </li>
+
+
+                  </ul>
+                </div>
+
+                <div class="col-lg ml-auto mr-auto">
+                  <p>Here are all the possible adjustments you can apply to your dataset.
+                    The values in the braces describe what type of data preparation method will be applied.
+                  </p>
+                  <div class="tab-content tab-space">
+                    <div class="tab-pane active" id="{{average_rank[0]}}">
+                      <ul id="sortable1" class="connectedSortable">
+                        {% for tech in techniques %}
+                        {% if tech.dimension == average_rank[0] %}
+                        <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+
+                    <div class="tab-pane " id="{{average_rank[1]}}">
+                      <ul id="sortable2" class="connectedSortable">
+                        {% for tech in techniques %}
+                        {% if tech.dimension == average_rank[1] %}
+                        <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+
+                    <div class="tab-pane " id="{{average_rank[2]}}">
+                      <ul id="sortable3" class="connectedSortable">
+                        {% for tech in techniques %}
+                        {% if tech.dimension == average_rank[2] %}
+                        <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+
+                    </br></br></br></br>
+                    &nbsp;
+                    <p>Build your pipeline:</p>
+
+                    <ul id="sortableList" class="connectedSortable">
+                      {% if wants_support == "Yes" %}
+                      {% for tech in techniques %}
+                     
+                      {% if tech.dimension == average_rank[0] %}
+                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %} 
+                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                     
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+
+                      {% for tech in techniques %}
+
+                      {% if tech.dimension == average_rank[1] %}
+                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %}
+                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                      {% endif %}
+
+                      {% endif %}
+                      {% endfor %}
+
+                      {% for tech in techniques %}
+
+                      {% if tech.dimension == average_rank[2] %}
+                      {% if tech.id == "remove_duplicates" or tech.id == "impute_standard" or tech.id == "outlier_correction"  %}
+                      <li class="ui-state-default" id="{{tech.id}}">{{tech.text}}</li>
+                      
+                      {% endif %}
+                      {% endif %}
+                      {% endfor %}
+                      {% endif %}
+                      
+
+                    </ul>
+                  </div>
+
+                  </br>
+
+
+                  <div class="row">
+                    <div class="col-lg ml-auto mr-auto">
+                      <div class="text-center"></br>
+                        <input class="btn btn-secondary" type="submit" name="submit" id="go-back"
+                          value="Go Back">&nbsp;&nbsp;&nbsp;
+
+                        <input class="btn btn-primary" type="submit" name="submit" id="save-and-apply"
+                          value="Apply modifications">
+
+
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+
+              </div>
+
+              <div class="col-6">
+
+
+                {% include 'home/Plots/table_df.html' %}
+                
+              </div>
+              
+
+            </div>
+            <div class="card-footer">
+              <div class="col-lg ml-auto mr-auto">
+                <div class="text-center">
+                  <input class="btn btn-fill btn-primary float-center " type="submit" name="submit"
+                    value="Download your csv file"><i></i>
+
+                </div>
+              </div>
+            </div>
+            
+
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock content %}
+{% block javascripts %}
+
+<!-- jQuery library: This is a JavaScript library that provides a variety of useful functions for interacting with the Document Object Model (DOM).
+<script src="{{ url_for('static', filename='jquery.js') }}"></script>
+
+jQuery UI library: This is a set of user interface widgets and effects built on top of jQuery.
+<link rel="stylesheet" href="{{ url_for('static', filename='jquery-ui.css') }}">
+<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script> -->
+
+<!-- Specific Page JS goes HERE  -->
+
+<script src="{{ config.ASSETS_ROOT }}/js/jquery-3.6.0.min.js"></script>
+<script src="{{ config.ASSETS_ROOT }}/js/jquery-ui.js"></script>
+
+
+<script>
+  $(function () {
+    $("#sortable1, #sortable2, #sortable3, #sortableList").sortable({
+      connectWith: ".connectedSortable"
+    }).disableSelection();
+  });
+
+  $(document).ready(function () {
+    $("#save-and-apply").on("click", function () {
+      var sortedList = $("#sortableList").sortable("toArray");
+      $.ajax({
+        type: "POST",
+        url: "/apply",
+        contentType: "application/json",
+        data: JSON.stringify(sortedList),
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (error) {
+          console.log(error);
+        }
+      });
+    });
+  });
+</script>
+
+<script>
+  $(document).ready(function () {
+    $('#sample').DataTable();
+  });
+</script>
+{% endblock javascripts %}

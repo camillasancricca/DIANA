@@ -1,0 +1,92 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}
+<style>h5, .h5 {
+    margin-bottom: 0rem;
+    font-family: inherit;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #32325d; 
+    font-size: 1.0625rem;}</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="content">
+    <!-- upload block -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card card-chart">
+                <div class="card-header">
+                    <h3 class="card-title"></i>Quality-Aware Data Preparation</h3>
+                </div>
+
+                <div class="col-lg ml-auto mr-auto">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>This tool aims at guiding the data scientist through the operations of data exploration
+                                and
+                                data preparation of a dataset.
+                                There are four major sections:</p>
+                            <br>
+                            <h5>Phase one: Dataset upload</h5>
+                            <p>Only csv files are allowed</br></p>
+                            <br>
+                            <h5>Phase two: Selection of variables and Machine Learning algorithm</h5>
+                                <p>The user should select the Machine Learning algorithm they intend on using after the data
+                                    prepration phase</br></p>
+                            <br>
+                            <h5>Phase three: Data exploration</h5>
+                            <p>The data exploration section is divided into five subsections: </br></p>
+                            <p>A statistical overview of the dataset paired with a list of warnings that give a
+                                preview of the problems present in the dataset</br></p>
+                            <p>A statistical and visual overview of each variable</br></p>
+                            <p>A correlation heatmap between the numerical variables</p>
+                            <p>A missing values analysis with three different visual perspectives</br></p>
+                            <p>The outliers inspection where the data scientist can define a new range of values for
+                                each numerical variable</br></p>
+                            <br>
+                            <h5>Phase four: Data preparation</h5>
+                            <p>If specified in phase two, the user can perform the pipeline that the system suggest based
+                                on the data qualtiy assessment, the Machine Learning algorithm and the data features.
+                                The user can build a pipeline of actions to perform on the dataset while also
+                                consulting the dataset.
+                                The actions are ordered by quality dimension. If the tool considers a quality dimension the
+                                most important to improve then it will be put before </br></p>
+
+                            <div class="col-xs-12 col-xs-offset-0 col-sm-offset-3 col-sm-6">
+                                <a class="btn btn-primary btn-lg btn-block btn-group" href="{{ url_for('upload')}}"
+                                    role="button">Get Started!</a>
+                            </div>
+                        </div>
+
+                    </div></br>
+                </div>
+
+                <!-- <canvas id="upload_dataset"></canvas> -->
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock content %}
+
+
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+    });
+</script>
+
+{% endblock javascripts %}

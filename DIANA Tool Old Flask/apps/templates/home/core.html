@@ -1,0 +1,43 @@
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+<div class="content">
+  <!-- upload block -->
+  {% include 'home/upload_after.html' %}
+  <div class="row">
+    {% include 'home/audit_after.html' %}
+
+    {% include 'home/overview.html' %}
+  </div>
+
+
+  {% include 'home/variables.html' %}
+
+  {% include 'home/correlations.html' %}
+
+  {% include 'home/missing_values.html' %}
+
+  {% if typeNUMlist|length > 0 %}
+  {% include 'home/outlier_selection.html' %}
+  {% endif %}
+
+  {% include 'home/modify_dataset.html' %}
+
+</div>
+
+{% endblock content %}
+{% block javascripts %}
+
+<script>
+
+
+  $(document).ready(function () {
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
+  });
+</script>
+
+{% endblock javascripts %}

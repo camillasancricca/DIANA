@@ -1,0 +1,166 @@
+{% block stylesheets %}
+<style>
+    hr {
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+<script href="{{ config.ASSETS_ROOT }}/js/jquery-3.6.0.min.js"></script>
+
+{% set count_outlier = namespace(value=0) %}
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category">Data Exploration</h5>
+                    <h3 class="card-title"></i>Outliers Inspection
+                    </h3>
+                    <p>
+                </div>
+
+
+                <div class="card-body">
+                    <div class="col-lg ml-auto mr-auto">
+                        <p>Write the range of values. Anything outside of it will be considered outlier</p>
+                        <form method="post" id="outlier-form">
+                            <div class="row">
+
+
+                                </br>
+                                {% for col in typeNUMlist %}
+                                <div class="col-7">
+                                    <div class="col-lg ml-auto mr-auto">
+                                        {% include outliers_html_list[count_outlier.value] %}
+                                    </div>
+
+                                </div>
+
+                                <div class="col-5">
+                                    <div class="col-lg ml-auto mr-auto">
+                                        <h4>{{col}}</h4>
+
+                                        <div class="row">
+                                            <label class="col-xs-1 col-form-label"
+                                                for="min_{{col}}">from:&nbsp;&nbsp;</label>
+                                            <div class="col-xs-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="min_{{col}}"
+                                                        id="min_{{col}}" value="{{min_values[count_outlier.value]}}"
+                                                        placeholder="{{min_values[count_outlier.value]}}">
+                                                </div>
+                                            </div>&nbsp;
+                                            <label class="col-xs-1 col-form-label"
+                                                for="max_{{col}}">&nbsp;to:&nbsp;</label>
+                                            <div class="col-xs-1">
+                                                <div class="form-group">
+                                                    <input type="text" class="form-control" name="max_{{col}}"
+                                                        id="max_{{col}}" value="{{max_values[count_outlier.value]}}"
+                                                        placeholder="{{max_values[count_outlier.value]}}">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <hr class="hr hr-blurry" color="#525f7f" />
+                                {% set count_outlier.value = count_outlier.value + 1 %}
+
+                                {% endfor %}
+                            </div>
+                            <div class="row">
+                                <div class="col-lg ml-auto mr-auto">
+                                    <div class="text-center">
+
+                                        <input class="btn btn-fill btn-primary float-right " type="submit" name="submit"
+                                            value="Submit Outliers" 
+                                            >
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+
+
+
+<script>
+    // Attach an event listener to the form submit button
+    document.querySelector('#outlier-form').addEventListener('submit', function (e) {
+        e.preventDefault(); // prevent the default form submission behavior
+
+        // Collect the form inputs using JavaScript and format them into a JSON object
+        var formData = {};
+        var inputs = document.querySelectorAll('#outlier-form input');
+        for (var i = 0; i < inputs.length; i++) {
+            formData[inputs[i].name] = inputs[i].value;
+        }
+
+        // Send an AJAX request to the Flask backend using the collected form data
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '/submit_outliers');
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+                // Handle the response from the Flask backend using JavaScript
+                var response = JSON.parse(xhr.responseText);
+                console.log(response);
+            } else {
+                console.log('Request failed.  Returned status of ' + xhr.status);
+            }
+        };
+        xhr.send(JSON.stringify(formData));
+    });
+
+
+    var formData = {};
+    var inputs = document.querySelectorAll('#outlier-form input');
+    for (var i = 0; i < inputs.length; i++) {
+        formData[inputs[i].name] = inputs[i].value;
+    }
+</script>
+
+<!-- <script>
+    showNotification: function(from, align) {
+        color = Math.floor((Math.random() * 4) + 1);
+
+        $.notify({
+            icon: "tim-icons icon-bell-55",
+            message: "Welcome to <b>Black Dashboard</b> - a beautiful freebie for every web developer."
+
+        }, {
+            type: type[color],
+            timer: 8000,
+            placement: {
+                from: from,
+                align: align
+            }
+        });
+    }
+</script> -->
+
+
+
+{% endblock javascripts %}

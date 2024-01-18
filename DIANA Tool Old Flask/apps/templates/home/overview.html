@@ -1,0 +1,84 @@
+{% block stylesheets %}
+<style>
+    #test1 {
+        display: contents;
+    }
+
+    #test2 {
+        display: none;
+    }
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+
+
+<div class="col-7">
+    <div class="card card-chart">
+        <div id="tabs">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-sm-6 text-left">
+                        <h5 class="card-category">Data Exploration</h5>
+                        <h3 class="card-title">Overview</h3>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
+                            <button class="btn btn-sm btn-primary btn-simple active" id="one">
+                                <input type="radio" name="options" checked>
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Overview</span>
+                            </button>
+                            <button class="btn btn-sm btn-primary btn-simple" id="two">
+                                <input type="radio" class="d-none d-sm-none" name="options">
+                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Alerts</span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-lg ml-auto mr-auto">
+                <div id="test1" class="display" width="100%" border="1">
+                    {% include 'home/overview_overviewTable.html' %}
+                </div>
+                <div id="test2" class="display" width="100%" border="1">
+                    {% include 'home/overview_alertsTable.html' %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+    var btnOne = document.getElementById('one');
+    var btnTwo = document.getElementById('two');
+    // var btnThree = document.getElementById('three');
+
+    btnOne.addEventListener('click', function () {
+
+        document.getElementById("test2").style.display = "none";
+        document.getElementById("test1").style.display = "block";
+    });
+
+    btnTwo.addEventListener('click', function () {
+        document.getElementById("test1").style.display = "none";
+
+        document.getElementById("test2").style.display = "block";
+    });
+
+    // btnThree.addEventListener('click', function () {
+    //     document.getElementById("test1").style.display = "none";
+    //     document.getElementById("test2").style.display = "none";
+    //     document.getElementById("test3").style.display = "block";
+    // });
+</script>
+{% endblock javascripts %}
