@@ -1,0 +1,99 @@
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card card-chart">
+            <div class="card-header">
+                <h3 class="card-title"><i class="tim-icons icon-cloud-upload-94"></i>Upload dataset</h3>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-10">
+                    <div class="col-lg ml-auto mr-auto">
+                        This tool aims at guiding the data scientist through the operations of data exploration and
+                        data preparation of a dataset.
+                        There are four major sections:</br>
+                        </br>
+                        <b>Phase one: Dataset upload</b></br>
+                        </br>
+                        <b>Phase two: Selection of variables and Machine Learning algorithm</b></br>
+                        </br>
+                        <b>Phase three: Data exploration</b></br>
+                        </br>
+                        <b>Phase four: Data preparation</b>
+                        </br>The user can build a pipeline of actions to perform on the dataset while also consulting
+                        the dataset.
+                        The actions are ordered by quality dimension. If the tool considers a quality dimension the most
+                        important to improve then it will be put before all the others </br>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <form method="post">
+                        <div class="card-footer">
+                            <div class="col-lg ml-auto mr-auto">
+                                <div class="text-center">
+
+                                    <input class="btn btn-primary float-right" type="submit" name="submit"
+                                        id="upload-new" value="Upload new dataset">
+
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+
+                </div>
+
+
+
+
+
+            </div></br>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.csv-upload-wrap').hide();
+
+                $('.file-upload-csv').attr('src', e.target.result);
+                $('.file-upload-content').show();
+
+                $('.csv-title').html(input.files[0].name);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+
+        } else {
+            removeUpload();
+        }
+    }
+
+    function removeUpload() {
+        $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+        $('.file-upload-content').hide();
+        $('.csv-upload-wrap').show();
+    }
+    $('.csv-upload-wrap').bind('dragover', function () {
+        $('.csv-upload-wrap').addClass('csv-dropping');
+    });
+    $('.csv-upload-wrap').bind('dragleave', function () {
+        $('.csv-upload-wrap').removeClass('csv-dropping');
+    });
+
+</script>
+{% endblock javascripts %}

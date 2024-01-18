@@ -1,0 +1,69 @@
+{% block stylesheets %}
+
+{% endblock stylesheets %}
+
+{% block content %}
+{% set n_var = namespace(value=0) %}
+<div class="content">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-category"> Data Exploration </h5>
+                    <h3 class="card-title"> Missing values </h3>
+                </div>
+                <div class="card-body">
+                    <ul class="nav nav-pills nav-pills-primary">
+
+                        <li class="nav-item">
+                            <a class="nav-link active" data-toggle="tab" href="#count">
+                                Count
+                            </a>
+                        </li>&nbsp;&nbsp;
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#heat">
+                                Heatmap
+                            </a>
+                        </li>&nbsp;&nbsp;
+
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#matrix">
+                                Matrix
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="col-lg ml-auto mr-auto">
+                        <div class="tab-content tab-space">
+
+                            <div class="tab-pane active" id="count">
+                                {% include 'home/Plots/bars_missing_values.html' %}
+
+                            </div>
+
+
+
+                            <div class="tab-pane" id="heat">
+                                {% include 'home/Plots/heatmap_missing_values.html' %}
+                            </div>
+
+
+                            <div class="tab-pane" id="matrix">
+                                <img src="/static/assets/img/matrix.png" class="img-fluid center-block">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+{% endblock javascripts %}

@@ -1,0 +1,163 @@
+{% block stylesheets %}
+<style>
+  .decimal-format::after {
+    content: attr(data-decimals);
+    display: none;
+  }
+
+  .decimal-format::before {
+    content: " ";
+    white-space: pre;
+  }
+
+  .decimal-format:after {
+    content: "." attr(data-decimals);
+  }
+
+  /* Example usage */
+  .decimal-format {
+    /* Specify the number of decimal places using the "data-decimals" attribute */
+    /* This value will be used by the ::after pseudo-element to format the number of decimal places */
+    /* For example, "data-decimals='2'" will display the number with two decimal places */
+    /* To display the original number without formatting, simply omit the "data-decimals" attribute */
+
+    font-weight: bold;
+  }
+</style>
+{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="card-header">
+  <h3 class="card-title"></i>{{var}}</h3>
+  <h5 class="card-category">{{profile.variables[var].type}}</h5>
+  <p>
+</div>
+
+
+
+<div class="row">
+
+
+
+  <div class="col-3">
+    <div class="table-responsive">
+      <table class="table tablesorter " id="">
+
+        <tbody>
+
+          <tr>
+            <td><b>Minimum</b></td>
+            <td>{{profile.variables[var].min}}</td>
+          </tr>
+          <tr>
+            <td><b>Maximum</b></td>
+            <td>{{profile.variables[var].max}}</td>
+          </tr>
+          <tr>
+            <td><b>Mean</b></td>
+            <td>{{profile.variables[var].mean|json_round}}</td>
+          </tr>
+
+
+          <tr>
+            <td>Distinct</td>
+            <td>{{profile.variables[var].n_distinct}}</td>
+          </tr>
+          <tr>
+            <td>Missing</td>
+            <td>{{profile.variables[var].n_missing}}</td>
+          </tr>
+          <tr>
+            <td>Zeros</td>
+            <td>{{profile.variables[var].n_zeros}}</td>
+          </tr>
+          <tr>
+            <td>Negatives</td>
+            <td>{{profile.variables[var].n_negative}}</td>
+          </tr>
+          <tr>
+            <td>Infinites</td>
+            <td>{{profile.variables[var].n_infinite}}</td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="col-3">
+    <div class="table-responsive">
+      <table class="table tablesorter " id="">
+        <tbody>
+          <tr>
+            <td><b>Median</b></td>
+
+            <td>{{medianList[count_num.value]}}</td>
+          </tr>
+          <tr>
+            <td><b>Variance</b></td>
+            <td>{{profile.variables[var].variance|json_round}}</td>
+          </tr>
+          <tr>
+            <td><b>Standard deviation</b></td>
+            <td>{{profile.variables[var].std|json_round}}</td>
+          </tr>
+          <tr>
+            <td>Distinct(%)</td>
+            <td>{{profile.variables[var].p_distinct|json_round}}%</td>
+          </tr>
+          <tr>
+            <td>Missing(%)</td>
+            <td>{{profile.variables[var].p_missing|json_round}}%</td>
+          </tr>
+          <tr>
+            <td>Zeros(%)</td>
+            <td>{{profile.variables[var].p_zeros|json_round}}%</td>
+          </tr>
+          <tr>
+            <td>Negatives(%)</td>
+            <td>{{profile.variables[var].p_negative|json_round}}%</td>
+          </tr>
+          <tr>
+            <td>Infinites(%)</td>
+            <td>
+              {{profile.variables[var].p_infinite|json_round}}%
+
+
+            </td>
+          </tr>
+
+        </tbody>
+
+      </table>
+    </div>
+  </div>
+
+  <div class="col-6">
+    <div class="row">
+      <div class="col-lg ml-auto mr-auto">
+        <div class="float-right">
+          {% include distr_html_list[count_num.value] %}
+        </div>
+        
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+
+
+</div>
+
+
+
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

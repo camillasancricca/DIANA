@@ -1,0 +1,75 @@
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<div class="sidebar">
+    <!--
+          Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red"
+      -->
+    <div class="sidebar-wrapper">
+        <div class="logo">
+            <a href="javascript:void(0)" class="simple-text logo-mini">
+
+            </a>
+            <a href="javascript:void(0)" class="simple-text logo-normal">
+                QADP
+            </a>
+        </div>
+        <ul class="nav">
+
+            <li class="{% if 'index' in segment %} active {% endif %} ">
+                <a href="/">
+                    <i class="tim-icons icon-chart-pie-36"></i>
+                    <p>Dashboard</p>
+                </a>
+            </li>
+
+            <li class="{% if 'upload' in segment %} active {% endif %}">
+                <a href="/upload.html" id="upload-new-ds">
+                    <i class="tim-icons icon-pin"></i>
+                    <p>Upload new dataset</p>
+                </a>
+            </li>
+
+
+            <!-- <li class="{% if '4' in segment %} active {% endif %}">
+                    <a href="/data_explore.html">
+                        <i class="tim-icons icon-pin"></i>
+                        <p>4</p>
+                    </a>
+                </li>
+                <li class="{% if '4' in segment %} active {% endif %}">
+                    <a href="/data_fix.html">
+                        <i class="tim-icons icon-pin"></i>
+                        <p>4</p>
+                    </a>
+                </li> -->
+
+        </ul>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+
+    $(document).ready(function () {
+        $('#upload-new-ds').click(function () {
+            // Prompt the user to confirm before deleting the file
+            if (confirm('Are you sure you want to go back and lose the data?')) {
+                // Get the filename from the server
+                $.ajax({
+                    type: 'POST',
+                    url: '/delete_file',
+                    data: JSON.stringify({ 'filename': 'apps/report/report.json' }),
+                    contentType: 'application/json',
+                    success: function (response) {
+                        // Show an alert with the success message
+                        alert(response.message);
+                    }
+                });
+            }
+        });
+    });
+</script>
+{% endblock javascripts %}
