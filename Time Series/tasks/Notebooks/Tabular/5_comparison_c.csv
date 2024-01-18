@@ -1,0 +1,10 @@
+,outlier,correction,imputation,v_50,v_60,v_70,v_80,v_90
+0,none,none,none,2.79,2.61,1.94,1.49,0.6
+1,lof,drop,LOCF,2.84,2.43,2.03,1.38,0.46
+2,lof,drop,interpolation,2.63,1.86,1.76,1.32,0.32
+3,z,drop,interpolation,0.85,0.0,-0.16,-0.04,-0.55
+4,z,LOCF,LOCF,9.01,6.55,5.14,3.72,1.56
+5,z,drop,LOCF,1.13,0.29,-0.13,0.22,-0.29
+6,z,LOCF,interpolation,8.6,6.15,5.3,3.44,1.62
+7,lof,LOCF,interpolation,1.73,1.02,0.57,0.45,-0.11
+8,lof,LOCF,LOCF,2.4,0.98,0.82,0.47,-0.1
