@@ -1,0 +1,121 @@
+name, column_name, n_tuples,n_attributes,p_num_var,p_cat_var,p_duplicates,total_size,column_uniqueness,column_density,column_entropy,p_correlated_features,max_pearson,min_pearson,column_type,mean,std,%missing,ML_ALGORITHM,BEST_METHOD
+car,lug_boot,1728,5,0.0,1.0,0.8432,69248,0.0017,8.2712,0.9051,0.0,0.0514,-0.2995,categorical,None,None,0.4878,dt,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,7.5803,0.9603,0.0,0.0514,-0.2995,categorical,None,None,0.4086,dt,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,5.3605,1.0164,0.0,0.0514,-0.2995,categorical,None,None,0.305,dt,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,12.1806,1.0564,0.0,0.0514,-0.2995,categorical,None,None,0.2031,dt,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8466,69248,0.0017,11.6891,1.0833,0.0,0.0514,-0.2995,categorical,None,None,0.1013,dt,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8432,69248,0.0017,8.2712,0.9051,0.0,0.0514,-0.2995,categorical,None,None,0.4878,lr,impute_bfill
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,7.5803,0.9603,0.0,0.0514,-0.2995,categorical,None,None,0.4086,lr,impute_logistic_regression
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,5.3605,1.0164,0.0,0.0514,-0.2995,categorical,None,None,0.305,lr,impute_bfill
+car,lug_boot,1728,5,0.0,1.0,0.8403,69248,0.0017,12.1806,1.0564,0.0,0.0514,-0.2995,categorical,None,None,0.2031,lr,impute_bfill
+car,lug_boot,1728,5,0.0,1.0,0.8466,69248,0.0017,11.6891,1.0833,0.0,0.0514,-0.2995,categorical,None,None,0.1013,lr,impute_bfill
+car,doors,1728,5,0.0,1.0,0.8466,69248,0.0017,8.0826,0.9048,0.0,0.0514,-0.2811,categorical,None,None,0.4878,dt,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8455,69248,0.0017,7.3674,0.9603,0.0,0.0514,-0.2914,categorical,None,None,0.4086,dt,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8438,69248,0.0017,5.3348,1.0164,0.0,0.0514,-0.3015,categorical,None,None,0.305,dt,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8426,69248,0.0017,4.1988,1.0563,0.0,0.0514,-0.2827,categorical,None,None,0.2031,dt,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8466,69248,0.0017,5.0619,1.0833,0.0,0.0514,-0.2947,categorical,None,None,0.1013,dt,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8466,69248,0.0017,8.0826,0.9048,0.0,0.0514,-0.2811,categorical,None,None,0.4878,lr,impute_bfill
+car,doors,1728,5,0.0,1.0,0.8455,69248,0.0017,7.3674,0.9603,0.0,0.0514,-0.2914,categorical,None,None,0.4086,lr,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8438,69248,0.0017,5.3348,1.0164,0.0,0.0514,-0.3015,categorical,None,None,0.305,lr,impute_logistic_regression
+car,doors,1728,5,0.0,1.0,0.8426,69248,0.0017,4.1988,1.0563,0.0,0.0514,-0.2827,categorical,None,None,0.2031,lr,impute_bfill
+car,doors,1728,5,0.0,1.0,0.8466,69248,0.0017,5.0619,1.0833,0.0,0.0514,-0.2947,categorical,None,None,0.1013,lr,impute_bfill
+car,index,1728,5,0.0,1.0,0.8571,69248,0.0023,4.0019,1.0524,0.0,0.0402,-0.2995,categorical,None,None,0.4878,dt,impute_bfill
+car,index,1728,5,0.0,1.0,0.8553,69248,0.0023,3.4667,1.1298,0.0,0.0612,-0.2995,categorical,None,None,0.4086,dt,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.8536,69248,0.0023,2.5239,1.2163,0.0,0.0612,-0.2995,categorical,None,None,0.305,dt,impute_bfill
+car,index,1728,5,0.0,1.0,0.853,69248,0.0023,1.9491,1.2851,0.0,0.0473,-0.2995,categorical,None,None,0.2031,dt,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.8553,69248,0.0023,1.0051,1.3418,0.0,0.0402,-0.2995,categorical,None,None,0.1013,dt,impute_bfill
+car,index,1728,5,0.0,1.0,0.8571,69248,0.0023,4.0019,1.0524,0.0,0.0402,-0.2995,categorical,None,None,0.4878,lr,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.8553,69248,0.0023,3.4667,1.1298,0.0,0.0612,-0.2995,categorical,None,None,0.4086,lr,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.8536,69248,0.0023,2.5239,1.2163,0.0,0.0612,-0.2995,categorical,None,None,0.305,lr,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.853,69248,0.0023,1.9491,1.2851,0.0,0.0473,-0.2995,categorical,None,None,0.2031,lr,impute_logistic_regression
+car,index,1728,5,0.0,1.0,0.8553,69248,0.0023,1.0051,1.3418,0.0,0.0402,-0.2995,categorical,None,None,0.1013,lr,no_impute
+car,buying,1728,5,0.0,1.0,0.8582,69248,0.0023,4.0046,1.0524,0.0,0.0514,-0.2995,categorical,None,None,0.4878,dt,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8565,69248,0.0023,3.7095,1.13,0.0,0.0514,-0.2995,categorical,None,None,0.4086,dt,impute_bfill
+car,buying,1728,5,0.0,1.0,0.8553,69248,0.0023,2.2065,1.2153,0.0,0.0514,-0.2995,categorical,None,None,0.305,dt,impute_bfill
+car,buying,1728,5,0.0,1.0,0.8542,69248,0.0023,1.8916,1.2854,0.0,0.0514,-0.2995,categorical,None,None,0.2031,dt,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8582,69248,0.0023,0.9353,1.3418,0.0,0.0514,-0.2995,categorical,None,None,0.1013,dt,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8582,69248,0.0023,4.0046,1.0524,0.0,0.0514,-0.2995,categorical,None,None,0.4878,lr,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8565,69248,0.0023,3.7095,1.13,0.0,0.0514,-0.2995,categorical,None,None,0.4086,lr,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8553,69248,0.0023,2.2065,1.2153,0.0,0.0514,-0.2995,categorical,None,None,0.305,lr,impute_logistic_regression
+car,buying,1728,5,0.0,1.0,0.8542,69248,0.0023,1.8916,1.2854,0.0,0.0514,-0.2995,categorical,None,None,0.2031,lr,impute_bfill
+car,buying,1728,5,0.0,1.0,0.8582,69248,0.0023,0.9353,1.3418,0.0,0.0514,-0.2995,categorical,None,None,0.1013,lr,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3014,20168,0.014,2.3475,0.6019,0.4,0.8142,-0.0046,categorical,None,None,0.4711,dt,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3154,20168,0.014,2.3478,0.5967,0.4,0.8142,-0.0292,categorical,None,None,0.3952,dt,no_impute
+house,SaleType,501,5,0.6,0.4,0.3134,20168,0.012,3.2917,0.5416,0.4,0.8142,-0.0723,categorical,None,None,0.2994,dt,no_impute
+house,SaleType,501,5,0.6,0.4,0.3333,20168,0.016,1.7572,0.529,0.4,0.8142,-0.0395,categorical,None,None,0.1796,dt,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3553,20168,0.016,1.7571,0.4925,0.4,0.8142,-0.0429,categorical,None,None,0.0858,dt,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3014,20168,0.014,2.3475,0.6019,0.4,0.8142,-0.0046,categorical,None,None,0.4711,lr,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3154,20168,0.014,2.3478,0.5967,0.4,0.8142,-0.0292,categorical,None,None,0.3952,lr,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3134,20168,0.012,3.2917,0.5416,0.4,0.8142,-0.0723,categorical,None,None,0.2994,lr,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3333,20168,0.016,1.7572,0.529,0.4,0.8142,-0.0395,categorical,None,None,0.1796,lr,impute_logistic_regression
+house,SaleType,501,5,0.6,0.4,0.3553,20168,0.016,1.7571,0.4925,0.4,0.8142,-0.0429,categorical,None,None,0.0858,lr,impute_logistic_regression
+house,GarageYrBlt,501,5,0.6,0.4,0.3194,20168,0.1517,0.0149,2.4844,0.4,0.822,-0.0447,numerical,1978.6565,24.451,0.4711,dt,impute_linear_regression
+house,GarageYrBlt,501,5,0.6,0.4,0.3253,20168,0.1657,0.0123,2.804,0.4,0.8532,-0.0447,numerical,1977.352,25.9742,0.3952,dt,impute_linear_regression
+house,GarageYrBlt,501,5,0.6,0.4,0.3234,20168,0.1677,0.0119,3.1588,0.4,0.8139,-0.0447,numerical,1978.1211,24.6103,0.2994,dt,impute_bfill
+house,GarageYrBlt,501,5,0.6,0.4,0.3353,20168,0.1756,0.0108,3.5827,0.4,0.82,-0.0447,numerical,1977.3356,25.5736,0.1796,dt,no_impute
+house,GarageYrBlt,501,5,0.6,0.4,0.3573,20168,0.1796,0.0102,3.899,0.4,0.8215,-0.0447,numerical,1977.0665,25.2933,0.0858,dt,impute_mean
+house,GarageYrBlt,501,5,0.6,0.4,0.3194,20168,0.1517,0.0149,2.4844,0.4,0.822,-0.0447,numerical,1978.6565,24.451,0.4711,lr,impute_linear_regression
+house,GarageYrBlt,501,5,0.6,0.4,0.3253,20168,0.1657,0.0123,2.804,0.4,0.8532,-0.0447,numerical,1977.352,25.9742,0.3952,lr,impute_bfill
+house,GarageYrBlt,501,5,0.6,0.4,0.3234,20168,0.1677,0.0119,3.1588,0.4,0.8139,-0.0447,numerical,1978.1211,24.6103,0.2994,lr,no_impute
+house,GarageYrBlt,501,5,0.6,0.4,0.3353,20168,0.1756,0.0108,3.5827,0.4,0.82,-0.0447,numerical,1977.3356,25.5736,0.1796,lr,impute_linear_regression
+house,GarageYrBlt,501,5,0.6,0.4,0.3573,20168,0.1796,0.0102,3.899,0.4,0.8215,-0.0447,numerical,1977.0665,25.2933,0.0858,lr,impute_linear_regression
+house,YearBuilt,501,5,0.6,0.4,0.3134,20168,0.1517,0.0149,2.4894,0.4,0.822,-0.0116,numerical,1972.9019,30.1112,0.4711,dt,impute_bfill
+house,YearBuilt,501,5,0.6,0.4,0.3154,20168,0.1756,0.0108,2.8311,0.4,0.8532,-0.0292,numerical,1971.6469,31.7913,0.3952,dt,impute_mean
+house,YearBuilt,501,5,0.6,0.4,0.3134,20168,0.1776,0.0105,3.2046,0.4,0.8139,-0.0723,numerical,1971.5613,30.9475,0.2994,dt,no_impute
+house,YearBuilt,501,5,0.6,0.4,0.3313,20168,0.1856,0.0095,3.6426,0.4,0.82,-0.0395,numerical,1971.0998,31.3437,0.1796,dt,impute_bfill
+house,YearBuilt,501,5,0.6,0.4,0.3553,20168,0.1936,0.0087,3.9672,0.4,0.8215,-0.0429,numerical,1970.6681,31.3258,0.0858,dt,impute_mean
+house,YearBuilt,501,5,0.6,0.4,0.3134,20168,0.1517,0.0149,2.4894,0.4,0.822,-0.0116,numerical,1972.9019,30.1112,0.4711,lr,no_impute
+house,YearBuilt,501,5,0.6,0.4,0.3154,20168,0.1756,0.0108,2.8311,0.4,0.8532,-0.0292,numerical,1971.6469,31.7913,0.3952,lr,impute_bfill
+house,YearBuilt,501,5,0.6,0.4,0.3134,20168,0.1776,0.0105,3.2046,0.4,0.8139,-0.0723,numerical,1971.5613,30.9475,0.2994,lr,no_impute
+house,YearBuilt,501,5,0.6,0.4,0.3313,20168,0.1856,0.0095,3.6426,0.4,0.82,-0.0395,numerical,1971.0998,31.3437,0.1796,lr,impute_linear_regression
+house,YearBuilt,501,5,0.6,0.4,0.3553,20168,0.1936,0.0087,3.9672,0.4,0.8215,-0.0429,numerical,1970.6681,31.3258,0.0858,lr,impute_linear_regression
+house,YearRemodAdd,501,5,0.6,0.4,0.3493,20168,0.1158,0.0265,2.2699,0.4,0.8142,-0.0447,numerical,1985.8377,20.3069,0.4711,dt,impute_linear_regression
+house,YearRemodAdd,501,5,0.6,0.4,0.3413,20168,0.1138,0.0278,2.486,0.4,0.8142,-0.0447,numerical,1985.8713,20.9639,0.3952,dt,impute_linear_regression
+house,YearRemodAdd,501,5,0.6,0.4,0.3453,20168,0.1158,0.0264,2.8165,0.4,0.8142,-0.0447,numerical,1985.5385,20.0241,0.2994,dt,impute_linear_regression
+house,YearRemodAdd,501,5,0.6,0.4,0.3493,20168,0.1178,0.0189,3.1735,0.4,0.8142,-0.0447,numerical,1985.309,20.537,0.1796,dt,impute_bfill
+house,YearRemodAdd,501,5,0.6,0.4,0.3593,20168,0.1198,0.0181,3.4496,0.4,0.8142,-0.0447,numerical,1985.1332,20.4614,0.0858,dt,impute_mean
+house,YearRemodAdd,501,5,0.6,0.4,0.3493,20168,0.1158,0.0265,2.2699,0.4,0.8142,-0.0447,numerical,1985.8377,20.3069,0.4711,lr,impute_bfill
+house,YearRemodAdd,501,5,0.6,0.4,0.3413,20168,0.1138,0.0278,2.486,0.4,0.8142,-0.0447,numerical,1985.8713,20.9639,0.3952,lr,impute_bfill
+house,YearRemodAdd,501,5,0.6,0.4,0.3453,20168,0.1158,0.0264,2.8165,0.4,0.8142,-0.0447,numerical,1985.5385,20.0241,0.2994,lr,impute_bfill
+house,YearRemodAdd,501,5,0.6,0.4,0.3493,20168,0.1178,0.0189,3.1735,0.4,0.8142,-0.0447,numerical,1985.309,20.537,0.1796,lr,impute_bfill
+house,YearRemodAdd,501,5,0.6,0.4,0.3593,20168,0.1198,0.0181,3.4496,0.4,0.8142,-0.0447,numerical,1985.1332,20.4614,0.0858,lr,no_impute
+wine,alcohol,1599,5,1.0,0.0,0.0838,64088,0.0344,0.0325,2.1508,0.0,0.4707,-0.3095,numerical,10.3853,1.046,0.4922,dt,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.0882,64088,0.035,0.0313,2.434,0.0,0.4745,-0.3095,numerical,10.4176,1.0625,0.4071,dt,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.0938,64088,0.0394,0.0246,2.7618,0.0,0.4961,-0.3095,numerical,10.4411,1.062,0.3046,dt,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.1082,64088,0.0363,0.0292,3.0528,0.0,0.4846,-0.3095,numerical,10.4156,1.0772,0.1951,dt,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.1307,64088,0.0407,0.0231,3.3297,0.0,0.481,-0.3095,numerical,10.4199,1.0714,0.1019,dt,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.0838,64088,0.0344,0.0325,2.1508,0.0,0.4707,-0.3095,numerical,10.3853,1.046,0.4922,lr,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.0882,64088,0.035,0.0313,2.434,0.0,0.4745,-0.3095,numerical,10.4176,1.0625,0.4071,lr,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.0938,64088,0.0394,0.0246,2.7618,0.0,0.4961,-0.3095,numerical,10.4411,1.062,0.3046,lr,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.1082,64088,0.0363,0.0292,3.0528,0.0,0.4846,-0.3095,numerical,10.4156,1.0772,0.1951,lr,impute_linear_regression
+wine,alcohol,1599,5,1.0,0.0,0.1307,64088,0.0407,0.0231,3.3297,0.0,0.481,-0.3095,numerical,10.4199,1.0714,0.1019,lr,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.0832,64088,0.0544,0.0126,2.357,0.0,0.486,-0.3095,numerical,0.6648,0.1795,0.4922,dt,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.0882,64088,0.0513,0.0143,2.65,0.0,0.486,-0.3095,numerical,0.6606,0.1714,0.4071,dt,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.0944,64088,0.0544,0.0126,2.998,0.0,0.486,-0.3095,numerical,0.658,0.1701,0.3046,dt,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.1082,64088,0.0575,0.0113,3.3578,0.0,0.486,-0.3095,numerical,0.6593,0.1717,0.1951,dt,impute_mean
+wine,sulphates,1599,5,1.0,0.0,0.1307,64088,0.0582,0.011,3.6526,0.0,0.486,-0.3095,numerical,0.6564,0.1694,0.1019,dt,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.0832,64088,0.0544,0.0126,2.357,0.0,0.486,-0.3095,numerical,0.6648,0.1795,0.4922,lr,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.0882,64088,0.0513,0.0143,2.65,0.0,0.486,-0.3095,numerical,0.6606,0.1714,0.4071,lr,impute_mean
+wine,sulphates,1599,5,1.0,0.0,0.0944,64088,0.0544,0.0126,2.998,0.0,0.486,-0.3095,numerical,0.658,0.1701,0.3046,lr,impute_linear_regression
+wine,sulphates,1599,5,1.0,0.0,0.1082,64088,0.0575,0.0113,3.3578,0.0,0.486,-0.3095,numerical,0.6593,0.1717,0.1951,lr,no_impute
+wine,sulphates,1599,5,1.0,0.0,0.1307,64088,0.0582,0.011,3.6526,0.0,0.486,-0.3095,numerical,0.6564,0.1694,0.1019,lr,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.0844,64088,0.075,0.0065,2.561,0.0,0.486,-0.2594,numerical,0.5249,0.1719,0.4922,dt,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.0888,64088,0.0794,0.0053,2.9156,0.0,0.486,-0.3148,numerical,0.5281,0.1779,0.4071,dt,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.0944,64088,0.0851,0.0041,3.3309,0.0,0.486,-0.304,numerical,0.5309,0.1829,0.3046,dt,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.1082,64088,0.0869,0.0043,3.7106,0.0,0.486,-0.3198,numerical,0.5262,0.1776,0.1951,dt,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.1307,64088,0.0876,0.0042,4.0689,0.0,0.486,-0.3058,numerical,0.528,0.1785,0.1019,dt,impute_bfill
+wine,volatile acidity,1599,5,1.0,0.0,0.0844,64088,0.075,0.0065,2.561,0.0,0.486,-0.2594,numerical,0.5249,0.1719,0.4922,lr,impute_bfill
+wine,volatile acidity,1599,5,1.0,0.0,0.0888,64088,0.0794,0.0053,2.9156,0.0,0.486,-0.3148,numerical,0.5281,0.1779,0.4071,lr,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.0944,64088,0.0851,0.0041,3.3309,0.0,0.486,-0.304,numerical,0.5309,0.1829,0.3046,lr,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.1082,64088,0.0869,0.0043,3.7106,0.0,0.486,-0.3198,numerical,0.5262,0.1776,0.1951,lr,impute_linear_regression
+wine,volatile acidity,1599,5,1.0,0.0,0.1307,64088,0.0876,0.0042,4.0689,0.0,0.486,-0.3058,numerical,0.528,0.1785,0.1019,lr,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0838,64088,0.0832,0.0052,2.6416,0.0,0.486,-0.3095,numerical,47.109,34.4224,0.4922,dt,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0888,64088,0.0851,0.005,3.0022,0.0,0.486,-0.3095,numerical,47.3623,32.8018,0.4071,dt,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0944,64088,0.0869,0.0039,3.4278,0.0,0.486,-0.3095,numerical,47.1785,33.2888,0.3046,dt,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.1082,64088,0.0894,0.004,3.8544,0.0,0.486,-0.3095,numerical,46.8574,32.8574,0.1951,dt,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.1307,64088,0.0876,0.0042,4.1941,0.0,0.486,-0.3095,numerical,46.1581,32.867,0.1019,dt,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0838,64088,0.0832,0.0052,2.6416,0.0,0.486,-0.3095,numerical,47.109,34.4224,0.4922,lr,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0888,64088,0.0851,0.005,3.0022,0.0,0.486,-0.3095,numerical,47.3623,32.8018,0.4071,lr,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.0944,64088,0.0869,0.0039,3.4278,0.0,0.486,-0.3095,numerical,47.1785,33.2888,0.3046,lr,no_impute
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.1082,64088,0.0894,0.004,3.8544,0.0,0.486,-0.3095,numerical,46.8574,32.8574,0.1951,lr,impute_linear_regression
+wine,total sulfur dioxide,1599,5,1.0,0.0,0.1307,64088,0.0876,0.0042,4.1941,0.0,0.486,-0.3095,numerical,46.1581,32.867,0.1019,lr,impute_linear_regression

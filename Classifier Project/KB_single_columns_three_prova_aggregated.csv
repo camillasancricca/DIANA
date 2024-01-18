@@ -1,0 +1,9 @@
+name, column_name,ML_ALGORITHM,BEST_METHOD1,BEST_METHOD2,BEST_METHOD3
+iris,sepal_length,dt,impute_linear_regression,no_impute,impute_mean
+iris,sepal_length,lr,no_impute,impute_mean,impute_linear_regression
+iris,sepal_width,dt,no_impute,impute_mean,impute_linear_regression
+iris,sepal_width,lr,no_impute,impute_linear_regression,impute_mean
+iris,petal_length,dt,impute_linear_regression,impute_mean,no_impute
+iris,petal_length,lr,impute_linear_regression,no_impute,impute_mean
+iris,petal_width,dt,impute_mean,no_impute,impute_linear_regression
+iris,petal_width,lr,impute_linear_regression,no_impute,impute_mean
