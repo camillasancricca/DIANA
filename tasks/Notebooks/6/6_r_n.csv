@@ -1,0 +1,14 @@
+,outlier,correction,imputation,50,60,70,80,90,100
+8,none,none,none,-3.56,-3.11,-2.14,-1.63,-0.84,0.0
+6,lof,drop,LOCF,0.95,1.93,1.82,1.58,1.2,
+7,lof,drop,interpolation,1.26,1.49,1.58,1.36,1.18,
+3,hst,drop,interpolation,-0.87,-0.72,-0.03,-0.28,0.53,
+2,hst,drop,LOCF,-0.8,-0.59,0.02,-0.18,0.5,
+12,z,drop,interpolation,-1.85,-0.94,-0.62,-0.71,0.08,
+11,z,drop,LOCF,-1.78,-0.88,-0.57,-0.64,0.07,
+9,z,LOCF,LOCF,-2.72,-2.26,-1.4,-1.21,-0.76,
+10,z,LOCF,interpolation,-2.87,-2.33,-1.39,-1.31,-0.78,
+4,lof,LOCF,LOCF,-4.34,-3.64,-3.26,-2.35,-1.84,
+0,hst,LOCF,LOCF,-2.74,-2.66,-1.69,-1.77,-1.89,
+1,hst,LOCF,interpolation,-2.88,-2.77,-1.69,-1.86,-1.93,
+5,lof,LOCF,interpolation,-4.61,-3.58,-3.04,-2.14,-1.97,
