@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina di Destinazione</title>
+</head>
+<body>
+    <h1>Elenco delle Attività Selezionate:</h1>
+    <ul id="attivitaSelezionateList"></ul>
+
+    <script>
+        // Funzione per ottenere i parametri dalla query string
+        function getQueryParameters() {
+            var queryParams = {};
+            var queryString = window.location.search.substring(1); // Rimuove il punto interrogativo
+            var paramPairs = queryString.split("&");
+            for (var i = 0; i < paramPairs.length; i++) {
+                var paramPair = paramPairs[i].split("=");
+                var paramName = decodeURIComponent(paramPair[0]);
+                var paramValue = decodeURIComponent(paramPair[1]);
+                queryParams[paramName] = paramValue;
+            }
+            return queryParams;
+        }
+
+        // Ottenere la query string
+        var queryParameters = getQueryParameters();
+
+        // Ottenere l'elenco delle attività selezionate dalla query string
+        var attivitaSelezionate = queryParameters["attivitaSelezionate"];
+        if (attivitaSelezionate) {
+            var attivitaList = attivitaSelezionate.split(",");
+            var attivitaSelezionateList = document.getElementById("attivitaSelezionateList");
+            for (var i = 0; i < attivitaList.length; i++) {
+                var attivita = attivitaList[i];
+                var listItem = document.createElement("li");
+                listItem.textContent = attivita;
+                attivitaSelezionateList.appendChild(listItem);
+            }
+        }
+    </script>
+</body>
+</html>

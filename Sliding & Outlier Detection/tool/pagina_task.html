@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DataFrame Cards con Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .card {
+            margin: 10px;
+            cursor: pointer;
+            height: 100%; /* Imposta l'altezza al 100% per allinearle */
+            display: flex;
+            flex-direction: column; /* Allinea il contenuto in verticale */
+        }
+        
+
+        .card.selected {
+            border: 2px solid #0074d9;
+        }
+
+        body {
+        background-color: #445069;
+        color:#4b4a4a;
+        font-family: Arial, sans-serif;
+    }
+
+    button {
+        background-color: #CE8DB0;
+        color: #E1F1FF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+    box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.5); /* Aggiungi l'ombreggiatura quando il cursore è sopra il pulsante */
+    }
+    h2 {
+    color: rgb(234, 234, 234); /* Imposta il colore del testo del titolo a rosso */
+   } 
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Data Preparation tasks</h2>
+        <div class="container">
+            <div class="button-center">
+                <button type="button" class="btn btn-primary" id="submitButton">Submit Responses</button>
+                <div id="errorMessage" style="color: red;"></div> 
+            </div>      
+        </div>
+        <div class="card-deck" id="cardsContainer">
+            
+            <div class="row">
+                {% for row in dataframe %}
+                <div class="col-md-4">
+                    <div class="card" data-nome="{{ row.nome }}" data-descrizione="{{ row.descrizione }}">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ row.activities }}</h5>
+                            <p class="card-text">{{ row.descriptions }}</p>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal{{ loop.index }}">Open Form</button>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Modali per i form -->
+        {% for row in dataframe %}
+        <div class="modal fade" id="modal{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="modalLabel{{ loop.index }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalLabel{{ loop.index }}">Form for {{ row.activities }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Il form verrà visualizzato quando viene aperta la modale -->
+                        <h7 style="text-align: center;"><b>How do you evaluate yourself in this task</b></h7>
+                        <form>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="choice" id="choice1" value="Novice user">
+                                <label class="form-check-label" for="choice1">
+                                    Novice user
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="choice" id="choice2" value="Beginner user">
+                                <label class="form-check-label" for="choice2">
+                                    Beginner user
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="choice" id="choice3" value="Intermediate user">
+                                <label class="form-check-label" for="choice3">
+                                    Intermediate user
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="choice" id="choice4" value="Expert user">
+                                <label class="form-check-label" for="choice4">
+                                    Expert user
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+<script>
+    // Riferimenti agli elementi HTML
+    // Riferimenti agli elementi HTML
+        const modals = document.querySelectorAll(".modal");
+        const submitButton = document.getElementById("submitButton");
+        const errorMessage = document.getElementById("errorMessage");
+
+        // Gestisci il clic sul pulsante "Invia"
+        submitButton.addEventListener("click", () => {
+            let tuttiFormCompletati = true;
+
+            // Scorrere tutte le modali
+            modals.forEach((modal) => {
+                const form = modal.querySelector("form");
+                if (form) {
+                    // Verifica se almeno un input è stato selezionato all'interno del form
+                    const inputSelezionato = form.querySelector("input:checked");
+                    if (!inputSelezionato) {
+                        // Se manca una risposta in una qualsiasi delle modali, imposta il flag su false
+                        tuttiFormCompletati = false;
+                        // Puoi anche aggiungere ulteriori logiche qui, come mostrare un messaggio di errore per questa modale.
+                    }
+                }
+            });
+
+            if (tuttiFormCompletati) {
+                // Esegui l'azione desiderata se tutti i form nelle modali hanno una risposta selezionata.
+                alert("Tutti i form sono stati completati correttamente.");
+            } else {
+                // Gestisci il caso in cui mancano risposte in una o più modali.
+                errorMessage.textContent = "Alcune modali non sono state compilate. Per favore, rispondi a tutte le domande.";
+            }
+        });
+
+
+    // Ora che le modali gestiscono l'apertura e la chiusura dei form, il codice per gestire le card è meno complesso.
+</script>
+
+    <!-- Includi le librerie JavaScript di Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+</body>
+</html>

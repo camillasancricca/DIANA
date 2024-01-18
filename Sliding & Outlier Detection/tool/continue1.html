@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista Attività</title>
+    <style>
+        body {
+        background-color: #445069;
+        color:#E1F1FF;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .container {
+        width: 640px;
+        height: 300px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #75819C;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        
+    }
+
+    input[type="file"] {
+        margin-bottom: 10px;
+        width: 80%;
+        background-color: #444;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+    }
+ 
+    button {
+        background-color: rgb(49, 214, 229);
+        color: #E1F1FF;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+            background-color: rgb(36, 154, 165);/* Colore di sfondo al passaggio del mouse */
+        }
+
+    .res {
+        background-color: rgb(49, 214, 229);
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .center-button-container { 
+        text-align: center;   
+        max-width: 100%;  
+        height: 50px;  
+        display: grid;  
+    }
+
+
+    .navbar {
+            
+            background-color: #ced4e4;
+            color: #1c1c1c;
+            margin: 5px;
+            padding: 10px;
+            
+        }
+
+
+    .spinner {
+        border: 4px solid rgba(255, 255, 255, 0.3);
+        border-top: 4px solid rgb(49, 214, 229);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 2s linear infinite;
+        margin: 20px auto;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    #result-container {
+        margin-top: 20px;
+    }
+
+    .error {
+        color: #D8000C;
+        background-color: #FFD2D2;
+        border: 1px solid #D8000C;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+
+    .success {
+        color: #4CAF50;
+        background-color: #DFF0D8;
+        border: 1px solid #4CAF50;
+        padding: 10px;
+        margin-top: 10px;
+        border-radius: 5px;
+    }
+        /* Stili CSS per nascondere la navbar */
+        #navbar {
+            display: none;
+        }
+
+        /* Stili CSS per le barre delle attività */
+        .attivita-bar {
+            background-color: #75819C; /* Colore di sfondo predefinito */
+            color: #E1F1FF;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease; /* Transizione al passaggio del mouse */
+            border-radius: 5px;
+        }
+
+        .attivita-bar:hover {
+            background-color: #575f74; /* Colore di sfondo al passaggio del mouse */
+        }
+
+        /* Stili CSS per il pulsante di rimozione */
+        .rimuovi-button {
+            background-color: #903126;
+            color: #E1F1FF;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* Stili CSS per il pulsante di conferma */
+        #confermaButton {
+            background-color: #1b7641;
+            color: #E1F1FF;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        #confermaButton:hover {
+            background-color: #145931;
+        }
+        
+    </style>
+</head>
+<body>
+    <h2>Select the Data Preparation tasks:</h2>
+    <div class="navbar" id="navbar_analysis">
+        <div class="text">
+            <h3>Selected analysis:</h3>
+            <p>Title: {{results['description']}}</p>
+            <p>Selected analysis: {{results['analysis']}}</p>
+            <p>Selected target variable: {{results['target']}}</p>
+        </div>  
+    </div>
+    <p>Select the Data Preparation tasks you want to perform and their order.<br>
+        Choose 'Default' for completely automated Data Preparation.</p>
+    <select id="attivitaDropdown">
+        <option value="Default">Default</option>
+        <option value="Handle Missing Values">Handle Missing Values</option>
+        <option value="Handle Outliers">Handle Outliers</option>
+        <option value="Decomposition of Time Series">Decomposition of Time Series</option>
+        <option value="Stationary Check">Stationary Check</option>
+        <option value="Fix Stationarity">Fix Stationarity</option>
+        <option value="Feature Engineering">Feature Engineering</option>
+        <option value="Data Transformation">Data Transformation</option>
+        <option value="Normalization">Normalization</option>
+    </select>
+
+    <!-- Pulsante per aggiungere e visualizzare l'attività selezionata -->
+    <button id="aggiungiButton">Add</button>
+
+    <!-- Navbar per visualizzare le attività selezionate -->
+    <div id="navbar">
+        <h2>Selected activities:</h2>
+        <div id="attivitaSelezionateDiv"></div>
+    </div>
+
+    <!-- Pulsante per confermare e inviare l'ordine -->
+    <button id="confermaButton">Process Request</button>
+    <div id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>The server is processing your request. Please wait...</p>
+    </div>
+    <div class="center-button-container">
+        <button class="res_button" id="visualizeResultsButton" style="display: none; font-size: 26px;" onclick="location.href='pagina_task'">Continue</button>
+    </div>
+
+    <script>
+        // Array per conservare le attività selezionate
+        var attivitaSelezionate = [];
+
+        // Riferimenti agli elementi HTML
+        var attivitaDropdown = document.getElementById("attivitaDropdown");
+        var aggiungiButton = document.getElementById("aggiungiButton");
+        var navbar = document.getElementById("navbar");
+        var attivitaSelezionateDiv = document.getElementById("attivitaSelezionateDiv");
+        var confermaButton = document.getElementById("confermaButton");
+        const visualizeResults = document.getElementById('visualizeResultsButton');
+
+
+
+        // Funzione per gestire il clic sul pulsante "Aggiungi e Visualizza"
+        aggiungiButton.addEventListener("click", function () {
+            var selectedActivity = attivitaDropdown.value;
+            if (selectedActivity === 'Default') {
+                window.location.href = 'automated_ts';
+            } else if (selectedActivity && !attivitaSelezionate.includes(selectedActivity)) {
+                // Rimuovi l'opzione selezionata dalla lista a tendina
+                attivitaDropdown.remove(attivitaDropdown.selectedIndex);
+
+                // Aggiungi l'attività selezionata alla lista
+                attivitaSelezionate.push(selectedActivity);
+
+                // Creare la barra corrispondente
+                var attivitaBar = document.createElement("div");
+                attivitaBar.className = "attivita-bar";
+                attivitaBar.textContent = selectedActivity;
+
+                // Creare il pulsante di rimozione
+                var rimuoviButton = document.createElement("button");
+                rimuoviButton.className = "rimuovi-button";
+                rimuoviButton.textContent = "X";
+                rimuoviButton.addEventListener("click", function () {
+                    // Rimuovere l'attività dalla lista e dalla barra
+                    attivitaSelezionate.splice(attivitaSelezionate.indexOf(selectedActivity), 1);
+                    attivitaSelezionateDiv.removeChild(attivitaBar);
+
+                    // Riabilitare l'opzione nella lista a tendina
+                    var option = document.createElement("option");
+                    option.value = selectedActivity;
+                    option.textContent = selectedActivity;
+                    attivitaDropdown.appendChild(option);
+                });
+
+                // Aggiungi la barra e il pulsante di rimozione alla navbar
+                attivitaBar.appendChild(rimuoviButton);
+                attivitaSelezionateDiv.appendChild(attivitaBar);
+
+                // Resetta la lista a tendina
+                attivitaDropdown.value = "";
+
+                // Mostra la navbar
+                navbar.style.display = "block";
+            }
+        });
+
+        const loadingSpinner = document.getElementById('loading-spinner');
+    // Funzione per gestire il clic sul pulsante "Conferma"
+    confermaButton.addEventListener("click", function () {
+        // Costruisci la query string con l'elenco delle attività selezionate
+        var queryParameters = encodeURIComponent(attivitaSelezionate.join(","));
+        loadingSpinner.style.display = 'block';
+        fetch("/invia-dati", {
+            method: "POST",
+            body: queryParameters
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            loadingSpinner.style.display = 'none';
+            navbar.style.display = 'none';
+            visualizeResults.style.display = 'block';
+
+        })
+        .catch(error => {
+            visualizeResults.style.display = 'none';
+
+            loadingSpinner.style.display = 'none';
+            navbar.style.display = 'none';
+
+        });
+            });
+</script>
+
+</body>
+</html>

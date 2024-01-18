@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina con barre e container</title>
+    <style>
+        :root {
+            --background-primary: #121212; /* Colore di sfondo principale */
+            --background-secondary: #1E1E1E; /* Colore di sfondo secondario */
+            --text-light: #ececec; /* Colore del testo chiaro */
+            --text-dark: #AAAAAA; /* Colore del testo scuro */
+            --accent-color: #47B5FF; /* Colore di accento (per i tasti) */
+        }
+
+            /* Esempio di utilizzo del colore di sfondo secondario */
+
+        body {
+            background-color: #445069;
+            color: #e6ebec;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #75819C;
+            color: #e6ebec;
+            border: #445069;
+            padding: 10px;
+            margin: 1px;
+        }
+
+        .navbar2 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #445069;
+            color: #e6ebec;
+            border: #445069;
+            padding: 10px;
+            margin: 1px;
+        }
+
+        .navbar1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #75819C;
+            color: #e6ebec;
+            border: #445069;
+            padding: 10px;
+            margin: 1px;
+        }
+
+        .container {
+            display: none;
+            background-color: #e6ebec;
+            color: #445069;
+            padding: 20px;
+            margin: 1px;
+        }
+
+        button {
+            background-color: rgb(49, 214, 229);
+            color: #e6ebec;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px; /* Imposta il raggio di arrotondamento dei bordi */
+
+        }
+
+        table {
+    
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #445069; /* Set the background color for the table */
+            color: #e6ebec; /* Set the text color in the table to white */
+        }
+
+
+
+        table, th, td {
+            border: 1px solid var(--text-dark); /* Set border color for table elements */
+        }
+
+
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            color: #E1F1FF;
+            background-color: rgb(71, 117, 126); /* Set the background color for table headers */
+        }
+
+        #table-container {
+            max-width: 100%;
+            margin: 0 auto;
+            text-align: center;
+            padding-top: 50px;
+        }
+        table tr td:first-child {
+            font-weight: bold;
+        }
+
+
+        button:hover {
+            background-color: rgb(40, 139, 148); /* Colore di sfondo al passaggio del mouse */
+        }
+
+
+        .spinner {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid rgb(49, 214, 229);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 2s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        #result-container {
+            margin-top: 20px;
+        }
+
+        .error {
+            color: #D8000C;
+            background-color: #FFD2D2;
+            border: 1px solid #D8000C;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .success {
+            color: #4CAF50;
+            background-color: #DFF0D8;
+            border: 1px solid #4CAF50;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+
+        .slider-container {
+            text-align: center;
+        }
+
+        .slider-label {
+            display: inline-block;
+            width: 100px;
+        }
+
+        .large-input {
+            width: 80%; /* Adjust the width as needed */
+            height: 40px; /* Adjust the height as needed */
+            /* Add any other custom styles you want */
+        }
+      
+    </style>
+</head>
+<body>
+    <div class="navbar2">
+        <h2>UNAWARE USER</h2>
+    </div>
+    <div class="navbar">
+        <h2>Dataset description</h2>
+        <button id="mostraContainer">More</button>
+    </div>
+    <div class="container" id="risultatiContainer">
+        <div class="text">
+            <p>{{results['descrizione']}}</p>
+        </div>  
+        <div id="table-container">
+            {{ results['sample'].to_html(escape=False, classes='table table-bordered table-striped', table_id = 'table', index=False) | safe }}
+        </div>  
+    </div>
+
+    <div class="navbar">
+        <h2>Attributes description</h2>
+        <button id="mostraContainer1">More</button>
+    </div>
+    <div class="container" id="risultatiContainer1">
+        <div class="text">
+            <p>The table contains AI generated descriptions of the attributes of the provided dataset.</p>
+        </div>
+        <div id="table-container">
+            {{ results['variables'].to_html(escape=False, classes='table table-bordered table-striped', table_id = 'table', index=False) | safe }}
+        </div>
+    </div>
+
+    <div class="navbar">
+        <h2>AI generated scenarios</h2>
+        <button id="mostraContainer2">More</button>
+    </div>
+    <div class="container" id="risultatiContainer2">
+        <div class="text">
+            <p>The table contains AI generated scenarios among which you can choose the one that better suits you.</p>
+        </div>
+        <div id="table-container">
+            {{ results['use_cases'].to_html(escape=False, classes='table table-bordered table-striped', index=False) | safe }}
+        </div>
+    </div>
+        
+    <div class="navbar" id = "mynavbar">
+        <h2>Confirm analysis</h2>
+        <button id="mostraContainer4">More</button>
+    </div>
+    <div class="container" id="risultatiContainer4">
+        <div class="text">
+            <p>Here you can check the specifics of the analysis you want to perform.</p>
+            <div id="analysis"></div>
+            <button class="continue_button" id="continue_button" style="display: none;" onclick="location.href='prova'">Continue</button>
+
+        </div>
+        
+    </div>
+
+    
+
+    
+    <script>
+        const mostraContainerButton = document.getElementById('mostraContainer');
+        const risultatiContainer = document.getElementById('risultatiContainer');
+        const mostraContainerButton1 = document.getElementById('mostraContainer1');
+        const risultatiContainer1 = document.getElementById('risultatiContainer1');
+        const mostraContainerButton2 = document.getElementById('mostraContainer2');
+        const risultatiContainer2 = document.getElementById('risultatiContainer2');
+        const mostraContainerButton4 = document.getElementById('mostraContainer4');
+        const risultatiContainer4 = document.getElementById('risultatiContainer4');
+        var choice;
+        const analysis = document.getElementById("analysis");
+
+       
+        mostraContainerButton4.addEventListener('click', () => {
+            if (risultatiContainer4.style.display === 'none' || risultatiContainer4.style.display === '') {
+                risultatiContainer4.style.display = 'block';
+            } else {
+                risultatiContainer4.style.display = 'none';
+            }
+        });
+
+        mostraContainerButton.addEventListener('click', () => {
+            if (risultatiContainer.style.display === 'none' || risultatiContainer.style.display === '') {
+                risultatiContainer.style.display = 'block';
+            } else {
+                risultatiContainer.style.display = 'none';
+            }
+        });
+
+        mostraContainerButton1.addEventListener('click', () => {
+            if (risultatiContainer1.style.display === 'none' || risultatiContainer1.style.display === '') {
+                risultatiContainer1.style.display = 'block';
+            } else {
+                risultatiContainer1.style.display = 'none';
+            }
+        });
+
+        mostraContainerButton2.addEventListener('click', () => {
+            if (risultatiContainer2.style.display === 'none' || risultatiContainer2.style.display === '') {
+                risultatiContainer2.style.display = 'block';
+            } else {
+                risultatiContainer2.style.display = 'none';
+            }
+        });
+        
+
+    
+        var buttons = document.querySelectorAll('.confirmButton');
+        const cont = document.getElementById('continue_button');
+
+        // Add a click event listener to each button
+        buttons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                // Display a confirmation dialog
+                var userConfirmed = window.confirm('Do you want to select: ' + button.id + '?');
+                
+                // Check the user's choice
+                if (userConfirmed) {
+                    // The user clicked OK
+                    alert('You have selected: ' + button.id + '.');
+                    choice = button.id
+                    fetch('/get_info', {
+                            method: 'POST',
+                            body: choice,
+                        })
+                        .then(response => response.text())
+                        .then(data => {
+                            //document.getElementById('response').textContent = data;
+                            var formattedText = data.replace(/\n/g, "<br>");
+                            analysis.innerHTML = formattedText;
+                            cont.style.display = 'block';
+                            variabileGlobale = formattedText;
+
+
+                        })
+                        .catch(error => {
+
+                            console.error('Error:', error);
+                            loadingSpinner.style.display = 'none';
+
+                        });
+                    
+                    // You can add your logic to proceed here.
+                } else {
+                    // The user clicked Cancel or closed the dialog
+                    alert('You chose not to select: ' + button.id + '.');
+                    // You can add your logic for the cancel action here.
+                }
+            });
+        });
+
+
+        cont.addEventListener('click', () => {
+            // Ottenere il testo da "analysis"
+
+            // Effettuare una richiesta POST al server per inviare il testo
+            fetch('/prova', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ variabileGlobale }) // Invia il testo come JSON
+            })
+            .then(response => {
+                if (response.ok) {
+                    console.log('Dati inviati con successo.');
+                }
+            })
+            .catch(error => {
+                console.error('Errore nell\'invio dei dati al server: ', error);
+            });
+        });
+        
+    </script>
+</body>
+</html>

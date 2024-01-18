@@ -1,0 +1,68 @@
+[
+    {
+      "id": 1,
+      "tipo": "Maglia",
+      "colore": "Blu",
+      "taglia": "M",
+      "prezzo": 25.99,
+      "vendite": 100,
+      "marchio": "Marchio1",
+      "stile": "Casuale",
+      "genere": "Uomo",
+      "materiale": "Cotone",
+      "sconto": 0.1
+    },
+    {
+      "id": 2,
+      "tipo": "Gonna",
+      "colore": "Nera",
+      "taglia": "S",
+      "prezzo": 29.99,
+      "vendite": 75,
+      "marchio": "Marchio2",
+      "stile": "Elegante",
+      "genere": "Donna",
+      "materiale": "Pelle",
+      "sconto": 0.2
+    },
+    {
+      "id": 3,
+      "tipo": "Pantaloni",
+      "colore": "Grigi",
+      "taglia": "L",
+      "prezzo": 35.99,
+      "vendite": 90,
+      "marchio": "Marchio1",
+      "stile": "Casuale",
+      "genere": "Uomo",
+      "materiale": "Denim",
+      "sconto": 0.05
+    },
+    {
+      "id": 4,
+      "tipo": "Maglia",
+      "colore": "Bianca",
+      "taglia": "S",
+      "prezzo": 19.99,
+      "vendite": 120,
+      "marchio": "Marchio2",
+      "stile": "Casuale",
+      "genere": "Donna",
+      "materiale": "Cotone",
+      "sconto": 0.15
+    },
+    {
+      "id": 5,
+      "tipo": "Giacca",
+      "colore": "Nera",
+      "taglia": "M",
+      "prezzo": 79.99,
+      "vendite": 50,
+      "marchio": "Marchio3",
+      "stile": "Elegante",
+      "genere": "Uomo",
+      "materiale": "Pelle",
+      "sconto": 0.1
+    }
+  ]
+  

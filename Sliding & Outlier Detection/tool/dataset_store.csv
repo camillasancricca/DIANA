@@ -1,0 +1,6 @@
+id,Type,Color,Size,Price,Number of sales,Brand,Style,Genre,Material,Sale percentage
+1,t-shirt,blue,M,25.99,100,brand1,Casual,Man,Cotton,0.1
+2,skirt,black,S,29.99,75,brand2,Formal,Woman,Leather,0.2
+3,pants,gray,L,35.99,90,brand1,Casual,Man,Denim,0.05
+4,t-shirt,white,S,19.99,120,brand2,Casual,Woman,Cotton,0.15
+5,blazer,black,M,79.99,50,brand3,Formal,Man,Leather,0.1
