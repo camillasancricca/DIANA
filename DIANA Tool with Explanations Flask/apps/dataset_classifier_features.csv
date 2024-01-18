@@ -1,0 +1,2 @@
+name,n_tuples,n_attributes,p_num_var,p_cat_var,p_duplicates,total_size,p_avg_distinct,p_max_distinct,p_min_distinct,avg_density,max_density,min_density,avg_entropy,max_entropy,min_entropy,p_correlated_features,max_pearson,min_pearson,ML_ALGORITHM
+dataset,2410,8,0.75,0.25,0.0,154368,0.4134,1.0,0.0029,0.3007,2.369,0.0,4.9894,7.7874,0.7507,0.0,0.6706,-0.504,dt
