@@ -1,0 +1,24 @@
+UI:	https://blog.streamlit.io/designing-streamlit-apps/
+Buttons and css:	https://youtu.be/jgLaB6dSLXQ [from https://blog.finxter.com/learning-streamlits-buttons-features/]
+Documentation:	https://docs.streamlit.io/library/api-reference
+
+Open a page inside the streamlit folder:  https://github.com/streamlit/streamlit/issues/4832
+			   		  1) Potrebbe non essermi utile
+			   		  2) Per aprire pagina internet  webbrowser.open_new_tab(url here)
+
+Nice library:	https://github.com/arnaudmiribel/streamlit-extras   ->  https://extras.streamlitapp.com/  ASSURDA
+
+Little streamlit datascience how to:	https://blog.streamlit.io/how-to-master-streamlit-for-data-science/
+
+Variable between multipages:	https://www.youtube.com/watch?v=YClmpnpszq8	
+		https://towardsdatascience.com/creating-true-multi-page-streamlit-apps-the-new-way-2022-b859b3ea2a15
+
+Buttons:	https://stackoverflow.com/questions/69478972/how-to-style-a-button-in-streamlit
+
+Components:   https://streamlit.io/components
+
+Pop-up:		https://www.w3schools.com/bootstrap4/bootstrap_modal.asp
+
+Nice library: Hydralit
+
+Streamlit bootstrap modal -> libreria
