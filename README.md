@@ -1,2 +1,2 @@
 # DIANA
-DIANA: a kNowledge-driven framework for DAta-centric AI
+DIANA: a knowledge-driven framework for aDaptIve dAta-ceNtric Ai
